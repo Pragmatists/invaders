@@ -45,6 +45,9 @@ function MyGame() {
             starfield = game.add.tileSprite(0, 0, 800, 600, 'space');
             game.physics.setBoundsToWorld();
 
+            starfield.anchor.set(0.5);
+            game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+            game.scale.startFullScreen(false);
 
             //  Our bullet group
             bullets = game.add.group();
