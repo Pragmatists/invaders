@@ -3,11 +3,11 @@ function Controls(game) {
     var rightPressed = false;
 
     this.preload = function () {
-        game.load.spritesheet('button', 'assets/button-round.png', 96, 96);
+        game.load.spritesheet('button', 'assets/arrow.png', 96, 96);
     };
 
     this.create = function () {
-        var buttonLeft = game.add.button(20, 400, 'button', buttonLeftClick, this, 2, 1, 0);
+        var buttonLeft = game.add.button(20, game.world.height - 130, 'button', buttonLeftClick, this, 2, 1, 0);
         buttonLeft.events.onInputDown.add(function () {
             leftPressed = true;
             rightPressed = false;
@@ -18,7 +18,7 @@ function Controls(game) {
             rightPressed = false;
         });
 
-        var buttonRight = game.add.button(700, 400, 'button', buttonRightClick, this, 2, 1, 0);
+        var buttonRight = game.add.button(game.world.width -150, game.world.height -130, 'button', buttonRightClick, this, 2, 1, 0);
         buttonRight.events.onInputDown.add(function () {
             rightPressed = true;
             leftPressed = false;

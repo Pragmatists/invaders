@@ -4,6 +4,8 @@ function MyGame() {
     this.start = function () {
         var width = window.innerWidth * window.devicePixelRatio;
         var height = window.innerHeight * window.devicePixelRatio;
+        var scaleRatio = window.devicePixelRatio / 3
+
         var game = new Phaser.Game(width, height, Phaser.AUTO, 'phaser-example', {
             preload: preload,
             create: create,
@@ -53,6 +55,7 @@ function MyGame() {
 
             //  Our bullet group
             bullets = game.add.group();
+            //bullets.scale.setTo(scaleRatio, scaleRatio);
             bullets.enableBody = true;
             bullets.physicsBodyType = Phaser.Physics.ARCADE;
             bullets.createMultiple(30, 'bullet');
@@ -62,6 +65,7 @@ function MyGame() {
             bullets.setAll('checkWorldBounds', true);
 
             player = game.add.sprite(game.world.centerX, game.world.height -100, 'ship');
+            //player.scale.setTo(scaleRatio, scaleRatio);
             player.anchor.setTo(0.5, 0.5);
             game.physics.enable(player, Phaser.Physics.ARCADE);
 
@@ -226,6 +230,7 @@ function MyGame() {
 
         function createAliens( game) {
             aliens = game.add.group();
+            //aliens.scale.setTo(scaleRatio, scaleRatio);
             aliens.enableBody = true;
             aliens.physicsBodyType = Phaser.Physics.ARCADE;
 
@@ -243,6 +248,7 @@ function MyGame() {
 
         function createBonuses( game) {
             bonuses = game.add.group();
+            //bonuses.scale.setTo(scaleRatio, scaleRatio);
             bonuses.enableBody = true;
             bonuses.physicsBodyType = Phaser.Physics.ARCADE;
 
