@@ -2,7 +2,9 @@ function MyGame() {
 
 
     this.start = function () {
-        var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', {
+        var width = window.innerWidth * window.devicePixelRatio;
+        var height = window.innerHeight * window.devicePixelRatio;
+        var game = new Phaser.Game(width, height, Phaser.AUTO, 'phaser-example', {
             preload: preload,
             create: create,
             update: update
@@ -42,12 +44,12 @@ function MyGame() {
 
         function create() {
 
-            starfield = game.add.tileSprite(0, 0, 800, 600, 'space');
+            starfield = game.add.tileSprite(game.world.centerX, game.world.centerY, width, height, 'space');
             game.physics.setBoundsToWorld();
 
             starfield.anchor.set(0.5);
-            game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
-            game.scale.startFullScreen(false);
+            game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+            game.scale.startFullScreen(true);
 
             //  Our bullet group
             bullets = game.add.group();
@@ -59,7 +61,7 @@ function MyGame() {
             bullets.setAll('outOfBoundsKill', true);
             bullets.setAll('checkWorldBounds', true);
 
-            player = game.add.sprite(400, 500, 'ship');
+            player = game.add.sprite(game.world.centerX, game.world.height -100, 'ship');
             player.anchor.setTo(0.5, 0.5);
             game.physics.enable(player, Phaser.Physics.ARCADE);
 
@@ -94,7 +96,7 @@ function MyGame() {
         function resetElement(element) {
 
             //  Move the alien to the top of the screen again
-            element.reset(50 + Math.random()*700, 0);
+            element.reset(50 + Math.random()*(game.world.width-50), 0);
 
             //  And give it a new random velocity
             element.body.velocity.y = 25 + Math.random() * 40;
@@ -229,7 +231,7 @@ function MyGame() {
 
             for (var y = 0; y < 4; y++) {
                 for (var x = 0; x < 10; x++) {
-                    var alien = aliens.create(100 + x * 65 + Math.random()*10, y * 50 + Math.random()*10, 'alien');
+                    var alien = aliens.create(Math.random()*(game.world.width-50), y * 50 + Math.random()*10, 'alien');
                     alien.name = 'alien' + x.toString() + y.toString();
                     alien.checkWorldBounds = true;
                     alien.events.onOutOfBounds.add(resetElement, this);
@@ -246,7 +248,7 @@ function MyGame() {
 
             for (var y = 0; y < 2; y++) {
                 for (var x = 0; x < 5; x++) {
-                    var bonus = bonuses.create(100 + Math.random()*700, 0, 'bonus');
+                    var bonus = bonuses.create(Math.random()*(game.world.width-50), 0, 'bonus');
                     bonus.name = 'bonus' + x.toString() + y.toString();
                     bonus.checkWorldBounds = true;
                     bonus.events.onOutOfBounds.add(resetElement, this);
