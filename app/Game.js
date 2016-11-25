@@ -26,8 +26,7 @@ MyGame.Game.prototype = {
         this.game.physics.setBoundsToWorld();
 
         this.starfield.anchor.set(0.5);
-        this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-        this.game.scale.startFullScreen(true);
+
         //this.scale.pageAlignHorizontally = true;
 
         //  Our bullet group

@@ -18,6 +18,11 @@ MyGame.Preloader.prototype = {
 		this.load.image('bullet', 'assets/bullet.png');
 	},
 	create: function() {
+		this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+		this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+		this.game.scale.pageAlignHorizontally = true;
+		this.game.scale.pageAlignVertically = true;
+		this.game.scale.startFullScreen(true);
 		this.game.state.start('MainMenu');
 	}
 };
