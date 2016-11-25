@@ -31,7 +31,6 @@ function Controls(game) {
     };
 
     this.update = function (player) {
-        console.log('update' +leftPressed+ " --"+rightPressed);
         if (leftPressed) {
             player.body.velocity.x = -200;
         }

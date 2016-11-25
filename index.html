@@ -5,23 +5,30 @@
     <title>hello phaser!</title>
     <script src="libs/phaser.min.js"></script>
 
+    <link href="game.css" rel="stylesheet" type="text/css">
 
+    <script src="app/Preloader.js"></script>
+    <script src="app/MainMenu.js"></script>
+    <script src="app/Howto.js"></script>
     <script src="app/controls.js"></script>
+    <script src="app/Game.js"></script>
     <script src="app/game.js"></script>
 
 </head>
 <body>
+<div id="game">
+    <script type="text/javascript">
+        (function () {
+            window.onload = function () {
 
-<script type="text/javascript">
+                var game = new GameBody();
+                game.startGame();
 
-    window.onload = function () {
+            };
+        })();
+    </script>
+</div>
 
-        var game = new MyGame();
-        game.start();
-
-    };
-
-</script>
 
 </body>
 </html>
