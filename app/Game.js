@@ -191,7 +191,7 @@ MyGame.Game.prototype = {
         this.aliens.physicsBodyType = Phaser.Physics.ARCADE;
 
         for (var y = 0; y < 4; y++) {
-            for (var x = 0; x < 10; x++) {
+            for (var x = 0; x < 5; x++) {
                 var alien = this.aliens.create(Math.random() * (this.game.world.width - 50), y * 50 + Math.random() * 10, 'alien');
                 alien.name = 'alien' + x.toString() + y.toString();
                 alien.checkWorldBounds = true;
@@ -207,7 +207,7 @@ MyGame.Game.prototype = {
         this.bonuses.physicsBodyType = Phaser.Physics.ARCADE;
 
         //number based on of screen size
-        for (var x = 0; x < 20; x++) {
+        for (var x = 0; x < 6; x++) {
             var bonus = this.bonuses.create(Math.random() * (this.game.world.width - 50), 0, 'bonus');
             bonus.name = 'bonus' + x.toString();
             bonus.checkWorldBounds = true;
@@ -215,7 +215,7 @@ MyGame.Game.prototype = {
             bonus.body.velocity.y = 25 + Math.random() * 100;
         }
 
-        for (var z = 0; z < 10; z++) {
+        for (var z = 0; z < 4; z++) {
             var mediumBonus = this.bonuses.create(Math.random() * (this.game.world.width - 50), 0, 'bonus-medium');
             mediumBonus.name = 'bonus' + z.toString();
             mediumBonus.checkWorldBounds = true;
@@ -223,7 +223,7 @@ MyGame.Game.prototype = {
             mediumBonus.body.velocity.y = 25 + Math.random() * 150;
         }
 
-        for (var y = 0; y < 5; y++) {
+        for (var y = 0; y < 2; y++) {
             var bigBonus = this.bonuses.create(Math.random() * (this.game.world.width - 50), 0, 'bonus-large');
             bigBonus.name = 'bonus' + y.toString();
             bigBonus.checkWorldBounds = true;
