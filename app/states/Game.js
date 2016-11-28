@@ -13,11 +13,10 @@ MyGame.Game.prototype = {
         this.fireButton = {};
         this.explosions = {};
         this.starfield = {};
-        this.score = 0;
-        this.scoreString = '';
-        this.scoreText = {};
 
         this.controls = new Controls(this.game);
+        this.score =new ScoreBoard(this.game);
+
         window.addEventListener("deviceorientation", this.handleOrientation, true);
 
 
@@ -46,10 +45,6 @@ MyGame.Game.prototype = {
         this.createAliens.call(this, game);
         this.createBonuses.call(this, game);
 
-        //  The score
-        this.scoreString = 'Story Points : ';
-        this.scoreText = this.game.add.text(10, 10, this.scoreString + this.score, {font: '34px Arial', fill: '#fff'});
-
         //  An explosion pool
         this.explosions = this.game.add.group();
         this.explosions.createMultiple(30, 'kaboom');
@@ -59,7 +54,10 @@ MyGame.Game.prototype = {
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
+
         this.controls.create();
+        this.score.create();
+
 
     },
     resetElement: function (element) {
@@ -101,8 +99,7 @@ MyGame.Game.prototype = {
 
         bullet.kill();
 
-        this.score += 20;
-        this.scoreText.text = this.scoreString + this.score;
+        this.score.update();
 
         //  And create an explosion :)
         var explosion = this.explosions.getFirstExists(false);
@@ -121,8 +118,7 @@ MyGame.Game.prototype = {
         this.resetElement(bonus);
     },
     bonusPlayerCollision: function (bonus, player) {
-        this.score += 20;
-        this.scoreText.text = this.scoreString + this.score;
+        this.score.update();
         //resetElement(bonus);
         player.destroy();
     },
