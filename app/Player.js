@@ -1,0 +1,74 @@
+Player = function (game, explosions) {
+
+    this.explosions =explosions;
+    this.bulletTime = 0;
+    this.game = game;
+
+    Phaser.Sprite.call(this, game, game.world.centerX, game.world.height - 100, 'ship');
+
+    //player.scale.setTo(scaleRatio, scaleRatio); //http://www.joshmorony.com/how-to-scale-a-game-for-all-device-sizes-in-phaser/
+    this.anchor.setTo(0.5, 0.5);
+    game.physics.enable(this, Phaser.Physics.ARCADE);
+    this.body.collideWorldBounds = true;
+
+    game.add.existing(this);
+
+    //  Our bullet group
+    this.bullets = this.game.add.group();
+    //bullets.scale.setTo(scaleRatio, scaleRatio);
+    this.bullets.enableBody = true;
+    this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
+    this.bullets.createMultiple(30, 'bullet');
+    this.bullets.setAll('anchor.x', 0.5);
+    this.bullets.setAll('anchor.y', 1);
+    this.bullets.setAll('outOfBoundsKill', true);
+    this.bullets.setAll('checkWorldBounds', true);
+
+};
+
+Player.prototype = Object.create(Phaser.Sprite.prototype);
+Player.prototype.constructor = Player;
+
+Player.prototype.dead = function () {
+
+    var explosion2 = this.explosions.getFirstExists(false);
+    explosion2.reset(this.body.x, this.body.y);
+    explosion2.play('kaboom', 30, false, true);
+    this.kill();
+};
+
+Player.prototype.move = function(controls,cursors){
+    this.body.velocity.setTo(0, 0);
+    controls.update(this);
+
+    if (cursors.left.isDown) {
+        this.body.velocity.x = -200;
+    }
+    else if (cursors.right.isDown) {
+        this.body.velocity.x = 200;
+    }
+};
+
+Player.prototype.getBullets = function(){
+  return this.bullets;
+};
+
+Player.prototype.fireBullet = function(){
+    if (this.game.time.now > this.bulletTime) {
+
+        //  Grab the first bullet we can from the pool
+        var bullet = this.getBullets().getFirstExists(false);
+        if (bullet) {
+            //  And fire it
+            bullet.reset(this.x, this.y + 8);
+            bullet.body.velocity.y = -400;
+            this.bulletTime = this.game.time.now + 200;
+        }
+    }
+};
+
+
+
+
+
+

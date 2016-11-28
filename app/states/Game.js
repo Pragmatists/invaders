@@ -7,92 +7,58 @@ MyGame.Game.prototype = {
         this.player = {};
         this.aliens = {};
         this.bonuses = {};
-        this.bullets = {};
-        this.bulletTime = 0;
         this.cursors = {};
         this.fireButton = {};
         this.explosions = {};
         this.starfield = {};
-
         this.controls = new Controls(this.game);
-        this.score =new ScoreBoard(this.game);
+        this.score = new ScoreBoard(this.game);
 
         window.addEventListener("deviceorientation", this.handleOrientation, true);
-
-
         this.starfield = this.game.add.tileSprite(this.game.world.centerX, this.game.world.centerY, width, height, 'space');
         this.game.physics.setBoundsToWorld();
 
         this.starfield.anchor.set(0.5);
 
 
-        //  Our bullet group
-        this.bullets = this.game.add.group();
-        //bullets.scale.setTo(scaleRatio, scaleRatio);
-        this.bullets.enableBody = true;
-        this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
-        this.bullets.createMultiple(30, 'bullet');
-        this.bullets.setAll('anchor.x', 0.5);
-        this.bullets.setAll('anchor.y', 1);
-        this.bullets.setAll('outOfBoundsKill', true);
-        this.bullets.setAll('checkWorldBounds', true);
+        this.createAliens();
+        this.createBonuses();
 
-        this.player = this.game.add.sprite(this.game.world.centerX, this.game.world.height - 100, 'ship');
-        //player.scale.setTo(scaleRatio, scaleRatio); //http://www.joshmorony.com/how-to-scale-a-game-for-all-device-sizes-in-phaser/
-        this.player.anchor.setTo(0.5, 0.5);
-        this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
 
-        this.createAliens.call(this, game);
-        this.createBonuses.call(this, game);
-
-        //  An explosion pool
         this.explosions = this.game.add.group();
         this.explosions.createMultiple(30, 'kaboom');
-        this.explosions.forEach(this.setupInvader, this);
+        this.explosions.forEach(this.setupExploder, this);
 
-        //  And some controls to play the game with
+
+        this.player = new Player(this.game, this.explosions);
+
+
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
-
         this.controls.create();
-        this.score.create();
 
+        this.score.create();
 
     },
     resetElement: function (element) {
-        //  Move the alien to the top of the screen again
         element.reset(50 + Math.random() * (this.game.world.width - 50), 0);
-
-        //  And give it a new random velocity
         element.body.velocity.y = 25 + Math.random() * 40;
     },
     update: function () {
         this.starfield.tilePosition.y += 2;
 
         if (this.player.alive) {
-            //  Reset the player, then check for movement keys
-            this.player.body.velocity.setTo(0, 0);
-            this.controls.update(this.player);
 
-            if (this.cursors.left.isDown) {
-                this.player.body.velocity.x = -200;
-            }
-            else if (this.cursors.right.isDown) {
-                this.player.body.velocity.x = 200;
-            }
+            this.player.move(this.controls, this.cursors);
 
-            //  Firing?
             if (this.fireButton.isDown) {
-                this.fireBullet();
+                this.player.fireBullet();
             }
 
-
-            //  Run collision
             this.game.physics.arcade.overlap(this.aliens, this.player, this.alienCollision, null, this);
             this.game.physics.arcade.overlap(this.bonuses, this.player, this.bonusPlayerCollision, null, this);
-            this.game.physics.arcade.overlap(this.bullets, this.aliens, this.bulletCollision, null, this);
-            this.game.physics.arcade.overlap(this.bullets, this.bonuses, this.bulletBonusCollision, null, this);
+            this.game.physics.arcade.overlap(this.player.getBullets(), this.aliens, this.bulletCollision, null, this);
+            this.game.physics.arcade.overlap(this.player.getBullets(), this.bonuses, this.bulletBonusCollision, null, this);
         }
     },
     bulletCollision: function (bullet, alien) {
@@ -101,7 +67,6 @@ MyGame.Game.prototype = {
 
         this.score.update();
 
-        //  And create an explosion :)
         var explosion = this.explosions.getFirstExists(false);
         explosion.reset(alien.body.x, alien.body.y);
         explosion.play('kaboom', 30, false, true);
@@ -110,7 +75,7 @@ MyGame.Game.prototype = {
     },
     bulletBonusCollision: function (bullet, bonus) {
         bullet.kill();
-        //  And create an explosion :)
+
         var explosion = this.explosions.getFirstExists(false);
         explosion.reset(bonus.body.x, bonus.body.y);
         explosion.play('kaboom', 30, false, true);
@@ -122,44 +87,32 @@ MyGame.Game.prototype = {
         //resetElement(bonus);
         player.destroy();
     },
+
     alienCollision: function (alien, player) {
         alien.kill();
-        player.kill();
 
+        this.player.dead();
 
-        //  And create an explosion :)
         var explosion = this.explosions.getFirstExists(false);
         explosion.reset(alien.body.x, alien.body.y);
         explosion.play('kaboom', 30, false, true);
 
-        var explosion2 = this.explosions.getFirstExists(false);
-        explosion2.reset(player.body.x, player.body.y);
-        explosion2.play('kaboom', 30, false, true);
 
-
-        this.game.state.start('GameOver');
+        var timer = this.game.time.create(false);
+        timer.loop(2000, function () {
+            this.game.state.start('GameOver');
+        }, this);
+        timer.start();
 
     },
-    fireBullet: function () {
 
-        if (this.game.time.now > this.bulletTime) {
+    setupExploder: function (game) {
+        game.anchor.x = 0.5;
+        game.anchor.y = 0.5;
 
-            //  Grab the first bullet we can from the pool
-            this.bullet = this.bullets.getFirstExists(false);
-            if (this.bullet) {
-                //  And fire it
-                this.bullet.reset(this.player.x, this.player.y + 8);
-                this.bullet.body.velocity.y = -400;
-                this.bulletTime = this.game.time.now + 200;
-            }
-        }
+        game.animations.add('kaboom');
     },
-    setupInvader: function (invader) {
-        invader.anchor.x = 0.5;
-        invader.anchor.y = 0.5;
 
-        invader.animations.add('kaboom');
-    },
     createAliens: function (game) {
         this.aliens = this.game.add.group();
         //aliens.scale.setTo(scaleRatio, scaleRatio);
