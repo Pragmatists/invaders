@@ -6,7 +6,8 @@ var MyGame = {
 MyGame.Preloader = function(game) {};
 MyGame.Preloader.prototype = {
 	preload: function() {
-		this.load.image('button-start', 'assets/button-start.png');
+
+		this.load.spritesheet('button-start', 'assets/button-start.png',146, 51);
 		this.load.image('screen-howtoplay', 'assets/screen-howtoplay.png');
 		this.load.image('space', 'assets/starfield.png');
 		this.load.image('alien', 'assets/space-baddie.png');

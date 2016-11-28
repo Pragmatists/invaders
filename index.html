@@ -12,7 +12,8 @@
     <script src="app/Howto.js"></script>
     <script src="app/controls.js"></script>
     <script src="app/Game.js"></script>
-    <script src="app/game.js"></script>
+    <script src="app/GameOver.js"></script>
+    <script src="app/GameSetup.js"></script>
 
 </head>
 <body>
@@ -21,7 +22,7 @@
         (function () {
             window.onload = function () {
 
-                var game = new GameBody();
+                var game = new GameSetup();
                 game.startGame();
 
             };

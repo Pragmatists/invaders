@@ -16,18 +16,16 @@ MyGame.Game.prototype = {
         this.score = 0;
         this.scoreString = '';
         this.scoreText = {};
-        this.lives = {};
-        this.stateText = '';
-        this.controls = new Controls(this.game);
 
+        this.controls = new Controls(this.game);
         window.addEventListener("deviceorientation", this.handleOrientation, true);
+
 
         this.starfield = this.game.add.tileSprite(this.game.world.centerX, this.game.world.centerY, width, height, 'space');
         this.game.physics.setBoundsToWorld();
 
         this.starfield.anchor.set(0.5);
 
-        //this.scale.pageAlignHorizontally = true;
 
         //  Our bullet group
         this.bullets = this.game.add.group();
@@ -52,18 +50,6 @@ MyGame.Game.prototype = {
         this.scoreString = 'Story Points : ';
         this.scoreText = this.game.add.text(10, 10, this.scoreString + this.score, {font: '34px Arial', fill: '#fff'});
 
-        //  Lives
-        this.lives = this.game.add.group();
-
-        //  Text
-        this.stateText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, ' ', {
-            font: '84px Arial',
-            fill: '#fff'
-        });
-        this.stateText.anchor.setTo(0.5, 0.5);
-        this.stateText.visible = false;
-
-
         //  An explosion pool
         this.explosions = this.game.add.group();
         this.explosions.createMultiple(30, 'kaboom');
@@ -74,6 +60,7 @@ MyGame.Game.prototype = {
         this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
         this.controls.create();
+
     },
     resetElement: function (element) {
         //  Move the alien to the top of the screen again
@@ -154,14 +141,7 @@ MyGame.Game.prototype = {
         explosion2.play('kaboom', 30, false, true);
 
 
-        //  Game over
-        //TODO
-        this.stateText.text = " GAME OVER \n Click to restart";
-        this.stateText.visible = true;
-
-        //the "click to restart" handler
-        this.game.input.onTap.addOnce(this.restart, this);
-
+        this.game.state.start('GameOver');
 
     },
     fireBullet: function () {
@@ -233,32 +213,13 @@ MyGame.Game.prototype = {
     }
 
     ,
-    restart: function () {
-        //  A new level starts
 
-        //resets the life count
-        this.lives.callAll('revive');
-        //  And brings the aliens back from the dead :)
-        this.aliens.removeAll();
-        this.bonuses.removeAll();
-        this.createAliens(game);
-        this.createBonuses(game);
-
-        //revives the player
-        this.player.revive();
-        //hides the text
-        this.stateText.visible = false;
-
-
-        this.scoreText.setText("Story points: 0");
-    },
     handleOrientation: function (e) {
         // Device Orientation API
         var x = e.gamma; // range [-90,90], left-right
         var y = e.beta;  // range [-180,180], top-bottom
         var z = e.alpha; // range [0,360], up-down
-        //MyGame._player.body.velocity.x += x;
-        //MyGame._player.body.velocity.y += y*0.5;
+
     }
 
 }
