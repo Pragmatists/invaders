@@ -3,7 +3,6 @@ MyGame.Game = function (game) {
 MyGame.Game.prototype = {
     create: function () {
 
-
         this.controls = new Controls(this.game);
         this.score = new ScoreBoard(this.game);
         this.starfield = new Starfield(this.game).create();
@@ -12,7 +11,6 @@ MyGame.Game.prototype = {
         this.explosions = new Explosions(this.game).create();
         this.player = new Player(this.game, this.explosions);
         this.cursors = this.game.input.keyboard.createCursorKeys();
-        this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         this.controls.create();
         this.score.create();
 
@@ -23,10 +21,6 @@ MyGame.Game.prototype = {
         if (this.player.alive) {
 
             this.player.move(this.controls, this.cursors);
-
-            if (this.fireButton.isDown) {
-                this.player.fireBullet();
-            }
 
             this.game.physics.arcade.overlap(this.aliens, this.player, this.alienCollision, null, this);
             this.game.physics.arcade.overlap(this.bonuses, this.player, this.bonusPlayerCollision, null, this);

@@ -1,52 +1,33 @@
 function Controls(game) {
-    var leftPressed = false;
-    var rightPressed = false;
 
-    this.preload = function () {
-        game.load.spritesheet('button', 'assets/arrow.png', 96, 96);
-    };
 
     this.create = function () {
-        var buttonLeft = game.add.button(20, game.world.height - 130, 'button', buttonLeftClick, this, 2, 1, 0);
-        buttonLeft.events.onInputDown.add(function () {
-            leftPressed = true;
-            rightPressed = false;
-        });
+        this.pad = game.plugins.add(Phaser.VirtualJoystick);
+        this.stick = this.pad.addStick(0, 0, 200, 'generic');
+        this.stick.scale = 0.4;
+        this.stick.alignBottomLeft(10);
+        this.stick.motionLock = Phaser.VirtualJoystick.HORIZONTAL;
 
-        buttonLeft.events.onInputUp.add(function () {
-            leftPressed = false;
-            rightPressed = false;
-        });
-
-        var buttonRight = game.add.button(game.world.width -150, game.world.height -130, 'button', buttonRightClick, this, 2, 1, 0);
-        buttonRight.events.onInputDown.add(function () {
-            rightPressed = true;
-            leftPressed = false;
-        });
-
-        buttonRight.events.onInputUp.add(function () {
-            leftPressed = false;
-            rightPressed = false;
-        });
+        this.buttonA = this.pad.addButton(500, 520, 'generic', 'button1-up', 'button1-down');
+        this.buttonA.scale = 0.4;
+        this.buttonA.alignBottomRight(10);
     };
 
     this.update = function (player) {
-        if (leftPressed) {
-            player.body.velocity.x = -200;
+        if (this.stick.isDown)
+        {
+            player.body.velocity.x = this.stick.forceX * 400;
         }
-        if(rightPressed){
-            player.body.velocity.x = 200;
+        else
+        {
+            player.body.velocity.x = 0;
         }
+
+        if (this.buttonA.isDown) {
+            player.fireBullet();
+        }
+
     };
-
-    function buttonLeftClick() {
-        //
-    }
-
-
-    function buttonRightClick() {
-        //
-    }
 
 
 }

@@ -19,6 +19,7 @@ MyGame.Preloader.prototype = {
         this.load.image('ship', 'assets/shmup-ship.png');
         this.load.spritesheet('kaboom', 'assets/explode.png', 128, 128);
         this.load.image('bullet', 'assets/bullet.png');
+        this.load.atlas('generic', 'assets/joystick/skins/generic-joystick.png', 'assets/joystick/skins/generic-joystick.json');
     },
     create: function () {
         this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
