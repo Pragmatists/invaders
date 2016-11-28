@@ -13,7 +13,6 @@ Player = function (game, explosions) {
 
     game.add.existing(this);
 
-    //  Our bullet group
     this.bullets = this.game.add.group();
     //bullets.scale.setTo(scaleRatio, scaleRatio);
     this.bullets.enableBody = true;
@@ -30,10 +29,7 @@ Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 
 Player.prototype.dead = function () {
-
-    var explosion2 = this.explosions.getFirstExists(false);
-    explosion2.reset(this.body.x, this.body.y);
-    explosion2.play('kaboom', 30, false, true);
+    this.explosions.explode(this);
     this.kill();
 };
 
@@ -56,7 +52,6 @@ Player.prototype.getBullets = function(){
 Player.prototype.fireBullet = function(){
     if (this.game.time.now > this.bulletTime) {
 
-        //  Grab the first bullet we can from the pool
         var bullet = this.getBullets().getFirstExists(false);
         if (bullet) {
             //  And fire it

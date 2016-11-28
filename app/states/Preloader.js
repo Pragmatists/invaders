@@ -26,6 +26,8 @@ MyGame.Preloader.prototype = {
         this.game.scale.pageAlignHorizontally = true;
         this.game.scale.pageAlignVertically = true;
         this.game.scale.startFullScreen(true);
+        this.game.physics.setBoundsToWorld();
+
         this.game.state.start('MainMenu');
     }
 };
