@@ -11,12 +11,13 @@ function Controls(game) {
         this.buttonA = this.pad.addButton(500, 520, 'generic', 'button1-up', 'button1-down');
         this.buttonA.scale = 0.4;
         this.buttonA.alignBottomRight(10);
+        return this;
     };
 
     this.update = function (player) {
         if (this.stick.isDown)
         {
-            player.body.velocity.x = this.stick.forceX * 400;
+            player.body.velocity.x = this.stick.forceX * 200;
         }
         else
         {

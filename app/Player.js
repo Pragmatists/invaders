@@ -37,7 +37,7 @@ Player.prototype.move = function(controls,cursors){
     this.body.velocity.setTo(0, 0);
     controls.update(this);
 
-
+//TODO refactor
     var fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     if ( fireButton.isDown) {
         this.fireBullet();

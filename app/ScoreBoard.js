@@ -11,7 +11,7 @@ function ScoreBoard(game) {
             font: '34px Arial',
             fill: '#fff'
         });
-
+        return this;
     };
 
     this.update = function () {

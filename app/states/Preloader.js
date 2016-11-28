@@ -14,6 +14,7 @@ MyGame.Preloader.prototype = {
         this.load.image('space', 'assets/starfield.png');
         this.load.image('alien', 'assets/space-baddie.png');
         this.load.image('bonus', 'assets/carrot.png');
+        this.load.image('star', 'assets/star.png');
         this.load.image('bonus-medium', 'assets/melon.png');
         this.load.image('bonus-large', 'assets/pineapple.png');
         this.load.image('ship', 'assets/shmup-ship.png');
