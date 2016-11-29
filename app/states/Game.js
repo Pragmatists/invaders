@@ -3,15 +3,16 @@ MyGame.Game = function (game) {
 MyGame.Game.prototype = {
     create: function () {
 
-        this.padControls = new PadControls(this.game).create();
-        this.keyboardControls = new KeyboardControls(this.game).create();
-        this.score = new ScoreBoard(this.game).create();
-        this.starfield = new Starfield(this.game).create();
-        this.aliens = new Aliens(this.game).create();
-        this.bonuses = new Bonuses(this.game).create();
-        this.explosions = new Explosions(this.game).create();
+        this.padControls = new PadControls(this.game);
+        this.keyboardControls = new KeyboardControls(this.game);
+        this.score = new ScoreBoard(this.game);
+        this.starfield = new Starfield(this.game);
+        this.bonuses = new Bonuses(this.game);
+        this.explosions = new Explosions(this.game);
+
+        this.aliens = new Aliens(this.game);
         this.player = new Player(this.game, this.explosions);
-        this.extraBonuses = new ExtraBonuses(this.game).create();
+        this.extraBonuses = new ExtraBonuses(this.game,this.explosions);
 
     },
     update: function () {
@@ -29,14 +30,13 @@ MyGame.Game.prototype = {
             this.game.physics.arcade.overlap(this.player.getBullets(), this.bonuses, this.bulletBonusCollision, null, this);
         }
     },
+    shutdown: function(){
+        this.padControls.destroy();
+    },
     bulletCollision: function (bullet, alien) {
-
         bullet.kill();
-
         this.score.update();
-
-        this.explosions.explode(alien);
-        this.resetElement(alien);
+        alien.explode(this.explosions);
     },
     bulletBonusCollision: function (bullet, bonus) {
         bullet.kill();
@@ -45,7 +45,7 @@ MyGame.Game.prototype = {
     },
     bonusPlayerCollision: function (bonus, player) {
         this.score.update();
-        //resetElement(bonus);
+        this.resetElement(player);
         player.destroy();
     },
 
@@ -55,10 +55,9 @@ MyGame.Game.prototype = {
     },
 
     alienCollision: function (alien, player) {
-        alien.kill();
-
-        this.player.dead();
         this.explosions.explode(alien);
+        alien.kill();
+        this.player.dead();
 
         var timer = this.game.time.create(false);
         timer.loop(2000, function () {

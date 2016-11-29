@@ -1,18 +1,14 @@
-function Starfield(game) {
-    this.game = game;
+var Starfield = function(game) {
 
     var width = 800 * window.devicePixelRatio;
     var height = 600 * window.devicePixelRatio;
 
-    this.create = function () {
-        this.starfield = this.game.add.tileSprite(this.game.world.centerX, this.game.world.centerY, width, height, 'space');
-        this.starfield.anchor.set(0.5);
-        return this;
-    };
+    var spaceBackground = game.add.tileSprite(game.world.centerX, game.world.centerY, width, height, 'space');
+    spaceBackground.anchor.set(0.5);
 
-    this.scroll = function(){
-        this.starfield.tilePosition.y += 2
+    Starfield.prototype.scroll = function(){
+        spaceBackground.tilePosition.y += 2
     }
 
 
-}
+};

@@ -1,25 +1,21 @@
-function KeyboardControls(game) {
-    this.game = game;
+var KeyboardControls = function(game) {
 
-    this.create = function () {
-        this.cursors = this.game.input.keyboard.createCursorKeys();
-        this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        return this;
-    };
+    var cursors = game.input.keyboard.createCursorKeys();
+    var fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-    this.update = function () {
+    KeyboardControls.prototype.update = function () {
 
-        if (this.fireButton.isDown) {
-            new EventDispatcher().dispatch('fire-button');
+        if (fireButton.isDown) {
+            new EventDispatcher().dispatch('controls-fire');
         }
-        if (this.cursors.left.isDown) {
+        if (cursors.left.isDown) {
             new EventDispatcher().dispatch('controls-move', -200);
         }
-        else if (this.cursors.right.isDown) {
+        else if (cursors.right.isDown) {
             new EventDispatcher().dispatch('controls-move', 200);
         }
 
     };
 
 
-}
+};

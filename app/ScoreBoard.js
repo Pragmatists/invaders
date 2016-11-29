@@ -1,20 +1,16 @@
-function ScoreBoard(game) {
+var ScoreBoard = function(game) {
+    var scoreString = 'Story Points : ';
+    var scoreText = game.add.text(10, 10, scoreString + MyGame.score, {
+        font: '34px Arial',
+        fill: '#fff'
+    });
 
-    var scoreString = '';
-    var scoreText = {};
-
-    this.create = function () {
-        scoreString = 'Story Points : ';
-        scoreText = game.add.text(10, 10, scoreString + MyGame.score, {
-            font: '34px Arial',
-            fill: '#fff'
-        });
-        return this;
-    };
-
-    this.update = function () {
+    ScoreBoard.prototype.update = function () {
         MyGame.score += 20;
         scoreText.text = scoreString + MyGame.score;
     };
 
-}
+};
+
+
+

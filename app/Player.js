@@ -1,4 +1,4 @@
-Player = function (game, explosions) {
+var Player = function (game, explosions) {
 
     this.explosions = explosions;
     this.bulletTime = 0;
@@ -14,7 +14,7 @@ Player = function (game, explosions) {
 
     game.add.existing(this);
 
-    new EventDispatcher().register('fire-button', function () {
+    new EventDispatcher().register('controls-fire', function () {
         that.fireBullet();
     });
 
