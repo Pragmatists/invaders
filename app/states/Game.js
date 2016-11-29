@@ -3,14 +3,14 @@ MyGame.Game = function (game) {
 MyGame.Game.prototype = {
     create: function () {
 
-        this.controls = new Controls(this.game).create();
+        this.padControls = new PadControls(this.game).create();
+        this.keyboardControls = new KeyboardControls(this.game).create();
         this.score = new ScoreBoard(this.game).create();
         this.starfield = new Starfield(this.game).create();
         this.aliens = new Aliens(this.game).create();
         this.bonuses = new Bonuses(this.game).create();
         this.explosions = new Explosions(this.game).create();
         this.player = new Player(this.game, this.explosions);
-        this.cursors = this.game.input.keyboard.createCursorKeys();
         this.extraBonuses = new ExtraBonuses(this.game).create();
 
     },
@@ -19,7 +19,8 @@ MyGame.Game.prototype = {
 
         if (this.player.alive) {
 
-            this.player.move(this.controls, this.cursors);
+            this.padControls.update( this.player);
+            this.keyboardControls.update( this.player);
 
             this.game.physics.arcade.overlap(this.aliens, this.player, this.alienCollision, null, this);
             this.game.physics.arcade.overlap(this.bonuses, this.player, this.bonusPlayerCollision, null, this);

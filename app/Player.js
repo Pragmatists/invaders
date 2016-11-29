@@ -33,21 +33,9 @@ Player.prototype.dead = function () {
     this.kill();
 };
 
-Player.prototype.move = function(controls,cursors){
-    this.body.velocity.setTo(0, 0);
-    controls.update(this);
+Player.prototype.move = function(){
 
-//TODO refactor
-    var fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    if ( fireButton.isDown) {
-        this.fireBullet();
-    }
-    if (cursors.left.isDown) {
-        this.body.velocity.x = -200;
-    }
-    else if (cursors.right.isDown) {
-        this.body.velocity.x = 200;
-    }
+
 };
 
 Player.prototype.getBullets = function(){

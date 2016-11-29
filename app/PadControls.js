@@ -1,4 +1,4 @@
-function Controls(game) {
+function PadControls(game) {
 
 
     this.create = function () {
