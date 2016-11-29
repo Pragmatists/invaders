@@ -19,8 +19,8 @@ MyGame.Game.prototype = {
 
         if (this.player.alive) {
 
-            this.padControls.update( this.player);
-            this.keyboardControls.update( this.player);
+            this.padControls.update();
+            this.keyboardControls.update();
 
             this.game.physics.arcade.overlap(this.aliens, this.player, this.alienCollision, null, this);
             this.game.physics.arcade.overlap(this.bonuses, this.player, this.bonusPlayerCollision, null, this);

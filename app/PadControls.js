@@ -14,18 +14,17 @@ function PadControls(game) {
         return this;
     };
 
-    this.update = function (player) {
-        if (this.stick.isDown)
-        {
-            player.body.velocity.x = this.stick.forceX * 200;
+    this.update = function () {
+        if (this.stick.isDown) {
+            var velocity = this.stick.forceX * 200;
+            new EventDispatcher().dispatch('controls-move', velocity);
         }
-        else
-        {
-            player.body.velocity.x = 0;
+        else {
+            new EventDispatcher().dispatch('controls-move', 0);
         }
 
         if (this.buttonA.isDown) {
-            player.fireBullet();
+            new EventDispatcher().dispatch('controls-fire');
         }
 
     };

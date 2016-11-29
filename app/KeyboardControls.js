@@ -7,16 +7,16 @@ function KeyboardControls(game) {
         return this;
     };
 
-    this.update = function (player) {
+    this.update = function () {
 
         if (this.fireButton.isDown) {
-            player.fireBullet();
+            new EventDispatcher().dispatch('fire-button');
         }
         if (this.cursors.left.isDown) {
-            player.body.velocity.x = -200;
+            new EventDispatcher().dispatch('controls-move', -200);
         }
         else if (this.cursors.right.isDown) {
-            player.body.velocity.x = 200;
+            new EventDispatcher().dispatch('controls-move', 200);
         }
 
     };

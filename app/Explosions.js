@@ -18,7 +18,7 @@ function Explosions(game) {
     };
 
 
-    this.explode = function(element){
+    this.explode = function (element) {
         var explosion = this.explosions.getFirstExists(false);
         explosion.reset(element.body.x, element.body.y);
         explosion.play('kaboom', 30, false, true);

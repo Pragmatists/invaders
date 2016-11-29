@@ -1,8 +1,9 @@
 Player = function (game, explosions) {
 
-    this.explosions =explosions;
+    this.explosions = explosions;
     this.bulletTime = 0;
     this.game = game;
+    var that = this;
 
     Phaser.Sprite.call(this, game, game.world.centerX, game.world.height - 100, 'ship');
 
@@ -12,6 +13,14 @@ Player = function (game, explosions) {
     this.body.collideWorldBounds = true;
 
     game.add.existing(this);
+
+    new EventDispatcher().register('fire-button', function () {
+        that.fireBullet();
+    });
+
+    new EventDispatcher().register('controls-move', function (velocity) {
+        that.move(velocity);
+    });
 
     this.bullets = this.game.add.group();
     //bullets.scale.setTo(scaleRatio, scaleRatio);
@@ -33,21 +42,19 @@ Player.prototype.dead = function () {
     this.kill();
 };
 
-Player.prototype.move = function(){
-
-
+Player.prototype.move = function (velocity) {
+    this.body.velocity.x = velocity;
 };
 
-Player.prototype.getBullets = function(){
-  return this.bullets;
+Player.prototype.getBullets = function () {
+    return this.bullets;
 };
 
-Player.prototype.fireBullet = function(){
+Player.prototype.fireBullet = function () {
     if (this.game.time.now > this.bulletTime) {
 
         var bullet = this.getBullets().getFirstExists(false);
         if (bullet) {
-            //  And fire it
             bullet.reset(this.x, this.y + 8);
             bullet.body.velocity.y = -400;
             this.bulletTime = this.game.time.now + 200;
