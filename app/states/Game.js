@@ -37,26 +37,22 @@
         bulletCollision: function (bullet, alien) {
             bullet.kill();
             new MyGame.EventDispatcher().dispatch("scored", 10);
-            alien.explode(this.explosions);
+            alien.explode();
         },
         bulletBonusCollision: function (bullet, bonus) {
             bullet.kill();
             this.explosions.explode(bonus);
             this.resetElement(bonus);
         },
-        bonusPlayerCollision: function (bonus, player) {
+        bonusPlayerCollision: function (player, bonus) {
             new MyGame.EventDispatcher().dispatch("scored", 20);
-            this.resetElement(player);
-            player.destroy();
+            this.resetElement(bonus);
+            bonus.destroy();
         },
 
         extraBonusPlayerCollision: function (bonus, player) {
             player.kill();
-
-            var explosions = this.explosions;
-            this.aliens.forEach(function (alien) {
-                alien.explode(explosions);
-            });
+            this.aliens.explode();
         },
 
         alienCollision: function (alien, player) {

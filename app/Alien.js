@@ -13,8 +13,8 @@
             element.body.velocity.y = 25 + Math.random() * 40;
         }
 
-        MyGame.Alien.prototype.explode = function (explosions) {
-            explosions.explode(this);
+        MyGame.Alien.prototype.explode = function () {
+            new MyGame.Explosions(this.game).explode(this);
             resetElement(this);
         };
 

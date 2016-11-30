@@ -13,4 +13,11 @@
     MyGame.Aliens.prototype = Object.create(Phaser.Group.prototype);
     MyGame.Aliens.prototype.constructor = MyGame.Aliens;
 
+    MyGame.Aliens.prototype.explode= function(){
+        this.forEach(function (alien) {
+            alien.explode();
+        });
+    }
+
+
 })();
