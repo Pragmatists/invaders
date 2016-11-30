@@ -1,9 +1,6 @@
-function GameSetup() {
+var MyGame = (function () {
 
-    this.startGame = function(){
-        var width = 800 * window.devicePixelRatio;
-        var height = 600 * window.devicePixelRatio;
-        var scaleRatio = window.devicePixelRatio / 3
+    var initGame = function () {
         var game = new Phaser.Game(320, 480, Phaser.CANVAS, 'game');
 
         game.state.add('Preloader', MyGame.Preloader);
@@ -13,6 +10,14 @@ function GameSetup() {
         game.state.add('GameOver', MyGame.GameOver);
 
         game.state.start('Preloader');
+    };
+
+    return {
+        _WIDTH: 320 * window.devicePixelRatio,
+        _HEIGHT: 480 * window.devicePixelRatio,
+        scaleRatio: window.devicePixelRatio / 3,
+        score: 0,
+        initGame: initGame
     }
 
-}
+})();

@@ -8,6 +8,8 @@
 
     <link href="game.css" rel="stylesheet" type="text/css">
 
+    <script src="app/Init.js"></script>
+
     <script src="app/event-dispatcher.js"></script>
     <script src="app/ScoreBoard.js"></script>
     <script src="app/PadControls.js"></script>
@@ -25,20 +27,14 @@
     <script src="app/states/Howto.js"></script>
     <script src="app/states/Game.js"></script>
     <script src="app/states/GameOver.js"></script>
-    <script src="app/states/GameSetup.js"></script>
 
 </head>
 <body>
 <div id="game">
     <script type="text/javascript">
-        (function () {
-            window.onload = function () {
 
-                var game = new GameSetup();
-                game.startGame();
+        MyGame.initGame();
 
-            };
-        })();
     </script>
 </div>
 
