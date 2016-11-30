@@ -5,8 +5,12 @@ var ScoreBoard = function(game) {
         fill: '#fff'
     });
 
-    ScoreBoard.prototype.update = function () {
-        MyGame.score += 20;
+    new EventDispatcher().register('scored', function (score) {
+        update(score)
+    });
+
+    var update = function (value) {
+        MyGame.score += value;
         scoreText.text = scoreString + MyGame.score;
     };
 

@@ -12,7 +12,7 @@ MyGame.Game.prototype = {
 
         this.aliens = new Aliens(this.game);
         this.player = new Player(this.game, this.explosions);
-        this.extraBonuses = new ExtraBonuses(this.game,this.explosions);
+        this.extraBonuses = new ExtraBonuses(this.game, this.explosions);
 
     },
     update: function () {
@@ -30,12 +30,12 @@ MyGame.Game.prototype = {
             this.game.physics.arcade.overlap(this.player.getBullets(), this.bonuses, this.bulletBonusCollision, null, this);
         }
     },
-    shutdown: function(){
+    shutdown: function () {
         this.padControls.destroy();
     },
     bulletCollision: function (bullet, alien) {
         bullet.kill();
-        this.score.update();
+        new EventDispatcher().dispatch("scored", 10);
         alien.explode(this.explosions);
     },
     bulletBonusCollision: function (bullet, bonus) {
@@ -44,14 +44,15 @@ MyGame.Game.prototype = {
         this.resetElement(bonus);
     },
     bonusPlayerCollision: function (bonus, player) {
-        this.score.update();
+        new EventDispatcher().dispatch("scored", 20);
         this.resetElement(player);
         player.destroy();
     },
 
     extraBonusPlayerCollision: function (bonus, player) {
         player.kill();
-        this.aliens.forEach(function (c) { });
+        this.aliens.forEach(function (c) {
+        });
     },
 
     alienCollision: function (alien, player) {
