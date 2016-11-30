@@ -1,7 +1,6 @@
 (function () {
-    MyGame.Player = function (game, explosions) {
+    MyGame.Player = function (game) {
 
-        this.explosions = explosions;
         this.bulletTime = 0;
         this.game = game;
         var that = this;
@@ -39,7 +38,7 @@
     MyGame.Player.prototype.constructor = MyGame.Player;
 
     MyGame.Player.prototype.dead = function () {
-        this.explosions.explode(this);
+        new MyGame.Explosions(this.game).explode(this);
         this.kill();
     };
 

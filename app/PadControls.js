@@ -16,7 +16,7 @@
         MyGame.PadControls.prototype.update = function () {
             if (stick.isDown) {
                 var velocity = stick.forceX * 200;
-                new EventDispatcher().dispatch('controls-move', velocity);
+                new MyGame.EventDispatcher().dispatch('controls-move', velocity);
             }
             else {
                 new MyGame.EventDispatcher().dispatch('controls-move', 0);

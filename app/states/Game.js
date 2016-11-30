@@ -9,11 +9,10 @@
             this.starfield = new MyGame.Starfield(this.game);
             this.score = new MyGame.ScoreBoard(this.game);
             this.bonuses = new MyGame.Bonuses(this.game);
-            this.explosions = new MyGame.Explosions(this.game);
-
             this.aliens = new MyGame.Aliens(this.game);
-            this.player = new MyGame.Player(this.game, this.explosions);
-            this.extraBonuses = new MyGame.ExtraBonuses(this.game, this.explosions);
+            this.player = new MyGame.Player(this.game);
+            this.extraBonuses = new MyGame.ExtraBonuses(this.game);
+            this.collisions = new MyGame.Collisions(this.game, this.aliens);
 
         },
         update: function () {
@@ -24,52 +23,11 @@
                 this.padControls.update();
                 this.keyboardControls.update();
 
-                this.game.physics.arcade.overlap(this.aliens, this.player, this.alienCollision, null, this);
-                this.game.physics.arcade.overlap(this.bonuses, this.player, this.bonusPlayerCollision, null, this);
-                this.game.physics.arcade.overlap(this.extraBonuses, this.player, this.extraBonusPlayerCollision, null, this);
-                this.game.physics.arcade.overlap(this.player.getBullets(), this.aliens, this.bulletCollision, null, this);
-                this.game.physics.arcade.overlap(this.player.getBullets(), this.bonuses, this.bulletBonusCollision, null, this);
+                this.collisions.update(this.player, this.bonuses, this.extraBonuses, this.aliens)
             }
         },
         shutdown: function () {
             this.padControls.destroy();
-        },
-        bulletCollision: function (bullet, alien) {
-            bullet.kill();
-            new MyGame.EventDispatcher().dispatch("scored", 10);
-            alien.explode();
-        },
-        bulletBonusCollision: function (bullet, bonus) {
-            bullet.kill();
-            this.explosions.explode(bonus);
-            this.resetElement(bonus);
-        },
-        bonusPlayerCollision: function (player, bonus) {
-            new MyGame.EventDispatcher().dispatch("scored", 20);
-            this.resetElement(bonus);
-            bonus.destroy();
-        },
-
-        extraBonusPlayerCollision: function (bonus, player) {
-            player.kill();
-            this.aliens.explode();
-        },
-
-        alienCollision: function (alien, player) {
-            this.explosions.explode(alien);
-            alien.kill();
-            this.player.dead();
-
-            var timer = this.game.time.create(false);
-            timer.loop(2000, function () {
-                this.game.state.start('GameOver');
-            }, this);
-            timer.start();
-
-        },
-        resetElement: function (element) {
-            element.reset(50 + Math.random() * (this.game.world.width - 50), 0);
-            element.body.velocity.y = 25 + Math.random() * 40;
         }
 
     };
