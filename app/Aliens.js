@@ -6,7 +6,7 @@
         this.physicsBodyType = Phaser.Physics.ARCADE;
 
         for (var x = 0; x < 10; x++) {
-            this.add(new MyGame.Alien(game));
+            this.add(new MyGame.Alien(game,x));
         }
     };
 

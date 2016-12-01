@@ -1,10 +1,12 @@
 (function () {
+    var blip1;
+
     MyGame.Player = function (game) {
 
         this.bulletTime = 0;
         this.game = game;
         var that = this;
-
+        blip1 = this.game.add.audio('blip');
         Phaser.Sprite.call(this, game, game.world.centerX, game.world.height - 100, 'ship');
 
         //player.scale.setTo(scaleRatio, scaleRatio); //http://www.joshmorony.com/how-to-scale-a-game-for-all-device-sizes-in-phaser/
@@ -39,6 +41,8 @@
 
     MyGame.Player.prototype.dead = function () {
         new MyGame.Explosions(this.game).explode(this);
+        var mediumBoomSound = this.game.add.audio('mediumBoom');
+        mediumBoomSound.play();
         this.kill();
     };
 
@@ -57,6 +61,7 @@
             if (bullet) {
                 bullet.reset(this.x, this.y + 8);
                 bullet.body.velocity.y = -400;
+                blip1.play();
                 this.bulletTime = this.game.time.now + 200;
             }
         }

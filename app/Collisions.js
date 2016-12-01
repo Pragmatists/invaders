@@ -27,8 +27,9 @@
 
         function bonusPlayerCollision(player, bonus) {
             new MyGame.EventDispatcher().dispatch("scored", 20);
+            var collect = game.add.audio('collect');
+            collect.play();
             resetElement(bonus);
-            bonus.destroy();
         }
 
         function extraBonusPlayerCollision(player, bonus) {
