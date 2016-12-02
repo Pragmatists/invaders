@@ -2,7 +2,6 @@
 
     MyGame.Collisions = function (game, aliens) {
 
-
         this.update = function (player, bonuses, extraBonuses, aliens) {
             game.physics.arcade.overlap(aliens, player, alienCollision, null, this);
             game.physics.arcade.overlap(bonuses, player, bonusPlayerCollision, null, this);
@@ -12,24 +11,18 @@
 
         };
 
-
         function bulletCollision(bullet, alien) {
             bullet.kill();
-            new MyGame.EventDispatcher().dispatch("scored", 10);
             alien.explode();
         }
 
         function bulletBonusCollision(bullet, bonus) {
             bullet.kill();
-            new MyGame.Explosions(game).explode(bonus);
-            resetElement(bonus);
+            bonus.explode();
         }
 
         function bonusPlayerCollision(player, bonus) {
-            new MyGame.EventDispatcher().dispatch("scored", 20);
-            var collect = game.add.audio('collect');
-            collect.play();
-            resetElement(bonus);
+            bonus.collect();
         }
 
         function extraBonusPlayerCollision(player, bonus) {
@@ -37,22 +30,18 @@
             aliens.explode();
         }
 
-        function alienCollision(player1, alien1) {
-            new MyGame.Explosions(game).explode(alien1);
-            alien1.kill();
-            player1.dead();
+        function alienCollision(player, alien) {
+            alien.explode();
+            player.dead();
+            goToGameOverState.call(this);
+        }
 
+        function goToGameOverState() {
             var timer = game.time.create(false);
             timer.loop(2000, function () {
                 game.state.start('GameOver');
             }, this);
             timer.start();
-
-        }
-
-        function resetElement(element) {
-            element.reset(50 + Math.random() * (game.world.width - 50), 0);
-            element.body.velocity.y = 25 + Math.random() * 40;
         }
 
     };
