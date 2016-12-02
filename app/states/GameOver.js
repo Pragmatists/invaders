@@ -30,8 +30,7 @@
         },
         shareResult: function () {
             
-//            var message = 'Join Pragmatists in their Sprint into the Space. Fight evil Space Bugs and collect User Stories.';
-            var message = 'I have successully completed ' + MyGame.score + ' Story Points.';
+            var message = 'I have successully completed ' + MyGame.score + ' Story Points!';
             
             FB.ui({
               method: 'share',
