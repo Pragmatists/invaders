@@ -1,12 +1,9 @@
 (function () {
-    MyGame.Alien = function (game, idNumber) {
+    MyGame.Alien = function (game, position) {
 
-        var positions =[30,60,90,120,150,180,210,240,270,300];
-
-        Phaser.Sprite.call(this, game, positions[idNumber], 0, 'alien');
+        Phaser.Sprite.call(this, game, position, 0, 'alien');
         game.physics.enable(this, Phaser.Physics.ARCADE);
-        this.name = idNumber;
-        this.idNumber = idNumber;
+        this.name = 'alien' + position.toString();
         this.checkWorldBounds = true;
         this.events.onOutOfBounds.add(resetElement, this);
         this.body.velocity.y = velocity();
@@ -16,7 +13,7 @@
         }
 
         function resetElement(element) {
-            element.reset(positions[element.idNumber], 0);
+            element.reset(element.position.x, 0);
             element.body.velocity.y = velocity();
         }
 
