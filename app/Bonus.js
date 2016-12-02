@@ -44,7 +44,7 @@
         };
 
         this.points = function () {
-            return 10;
+            return 2;
         }
 
     };
@@ -59,7 +59,7 @@
         };
 
         this.points = function () {
-            return 20;
+            return 3;
         }
 
     };
@@ -74,7 +74,7 @@
         };
 
         this.points = function () {
-            return 30;
+            return 5;
         }
 
     };

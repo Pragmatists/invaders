@@ -1,6 +1,5 @@
 (function () {
-    MyGame.Game = function (game) {
-    };
+    MyGame.Game = function (game) {};
     MyGame.Game.prototype = {
         create: function () {
 
@@ -31,5 +30,35 @@
         }
 
     };
+    MyGame.Level1 = function (game) {
+        this.levelName='sprint 1';
+        this.levelSpeed=30;
+        this.levlePoints = 20;
+        this.nextLevel = function(){
+            return 'Level2';
+        }
+    };
+    MyGame.Level1.prototype = Object.create(MyGame.Game.prototype);
+
+    MyGame.Level2 = function (game) {
+        this.levelName='sprint 2';
+        this.levelSpeed=40;
+        this.levlePoints = 30;
+        this.nextLevel = function(){
+            return 'Level3';
+        }
+    };
+    MyGame.Level2.prototype = Object.create(MyGame.Game.prototype);
+
+    MyGame.Level3 = function (game) {
+        this.levelName='sprint 3';
+        this.levelSpeed=50;
+        this.levlePoints = 80;
+        this.nextLevel = function(){
+            return 'GameOver';
+        }
+    };
+    MyGame.Level3.prototype = Object.create(MyGame.Game.prototype);
+
 
 })();

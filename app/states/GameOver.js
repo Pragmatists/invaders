@@ -25,7 +25,7 @@
         },
         restartGame: function () {
             this.stateText.visible = false;
-            this.game.state.start('Game');
+            this.game.state.start('Level1');
         },
         shareResult: function () {
            //TODO
