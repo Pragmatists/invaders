@@ -6,3 +6,6 @@ http://phaser.io/docs/2.6.2
 ` python -m SimpleHTTPServer 9000`
 * access game in browser
 `http://localhost:9000/`
+
+### deployment
+https://pragma-game.herokuapp.com/index.html
