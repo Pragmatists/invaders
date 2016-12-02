@@ -20,7 +20,6 @@
             this.load.audio('smallBoom', 'assets/audio/smallBoom.wav');
             this.load.audio('mediumBoom', 'assets/audio/mediumBoom.wav');
             this.load.audio('collect', 'assets/audio/collect.wav');
-            this.load.audio('music', 'assets/audio/SleighRide.wav');
             this.load.audio('blip', 'assets/audio/blip1.wav');
         },
         create: function () {
