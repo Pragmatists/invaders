@@ -4,7 +4,6 @@
     MyGame.GameOver.prototype = {
         create: function () {
 
-            //  Text
             this.stateText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 100, ' ', {
                 font: '34px Arial',
                 fill: '#fff'
@@ -19,10 +18,17 @@
             this.startButton.anchor.set(0.5, 0);
             this.startButton.input.useHandCursor = true;
 
+            this.facebookButton = this.add.button(MyGame._WIDTH * 0.5, 260, 'button-facebook', this.shareResult, this, 2, 0, 1);
+            this.facebookButton.anchor.set(0.5, 0);
+            this.facebookButton.input.useHandCursor = true;
+
         },
         restartGame: function () {
             this.stateText.visible = false;
             this.game.state.start('Game');
+        },
+        shareResult: function () {
+           //TODO
         }
 
     };
