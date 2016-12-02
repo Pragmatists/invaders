@@ -29,7 +29,16 @@
             this.game.state.start('Level1');
         },
         shareResult: function () {
-           //TODO
+            
+//            var message = 'Join Pragmatists in their Sprint into the Space. Fight evil Space Bugs and collect User Stories.';
+            var message = 'I have successully completed ' + MyGame.score + ' Story Points.';
+            
+            FB.ui({
+              method: 'share',
+              quote: message,
+              href: 'http://pragmatists.github.io/invaders',
+            }, function(response){});            
+            
         }
 
     };
