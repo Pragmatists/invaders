@@ -25,6 +25,7 @@
         },
         restartGame: function () {
             this.stateText.visible = false;
+            MyGame.score = 0;
             this.game.state.start('Level1');
         },
         shareResult: function () {
