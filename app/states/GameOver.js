@@ -26,7 +26,7 @@
         restartGame: function () {
             this.stateText.visible = false;
             MyGame.score = 0;
-            this.game.state.start('Level1');
+            this.game.state.start('Game');
         },
         shareResult: function () {
             

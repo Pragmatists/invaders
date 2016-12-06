@@ -9,6 +9,7 @@
         blip1 = this.game.add.audio('blip');
         Phaser.Sprite.call(this, game, game.world.centerX, game.world.height - 100, 'ship');
 
+        this.scale.setTo(0.2, 0.2);
         //player.scale.setTo(scaleRatio, scaleRatio); //http://www.joshmorony.com/how-to-scale-a-game-for-all-device-sizes-in-phaser/
         this.anchor.setTo(0.5, 0.5);
         game.physics.enable(this, Phaser.Physics.ARCADE);

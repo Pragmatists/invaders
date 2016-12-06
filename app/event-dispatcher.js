@@ -10,11 +10,19 @@
             instance = this;
         }
 
-        EventDispatcher.prototype.register = function (event, eventAction) {
-            events[event] = eventAction;
+        EventDispatcher.prototype.reset = function () {
+            events = {};
+        };
+
+        EventDispatcher.prototype.register = function (event, listener) {
+            events[event] = events[event] || [];
+            events[event].push(listener);
         };
         EventDispatcher.prototype.dispatch = function (event, params) {
-            events[event](params);
+            var listeners = events[event] || [];
+            listeners.forEach(function(l){
+                l(params);
+            });
         };
         return EventDispatcher;
     })();

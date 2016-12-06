@@ -7,6 +7,7 @@
         this.checkWorldBounds = true;
         this.events.onOutOfBounds.add(resetElement, this);
         this.body.velocity.y = type.velocity();
+        this.scale.setTo(0.3, 0.3);
 
         function position() {
             return Math.random() * (game.world.width - 50);

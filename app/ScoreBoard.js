@@ -1,34 +1,32 @@
 (function () {
     MyGame.ScoreBoard = function (game) {
-        var scoreString = game.state.getCurrentState().levelName+ 'Story Points : ';
-        var scoreText = game.add.text(10, 10, scoreString + MyGame.score, {
+        
+        var style = {
             font: '20px Arial',
             fill: '#fff'
-        });
-
-        new MyGame.EventDispatcher().register('scored', function (score) {
+        };
+        
+        var score = 0;
+        var sprint = 0;
+        
+        var totalScore = game.add.text(10, 10, 'Total: 0 SP', style);
+        var sprintScore = game.add.text(game.world.width - 10, 10, 'Sprint: 0 SP', style);
+        sprintScore.anchor.x = 1;
+        
+        var events = new MyGame.EventDispatcher();
+        
+        events.register('scored', function (score) {
             update(score)
+        });
+        events.register('next-level', function(){
+            sprint = 0;
         });
 
         var update = function (value) {
-            MyGame.score += value;
-            scoreText.text = scoreString + MyGame.score;
-
-            //TODO refactor to separate object LevelSwitcher
-            if (MyGame.score >= game.state.getCurrentState().levlePoints) {
-                var timer = game.time.create(false);
-                game.physics.arcade.isPaused = true;
-                game.add.text(game.world.centerX, game.world.centerY, 'Sprint completed', {
-                    font: '20px Arial',
-                    fill: '#fff'
-                });
-                timer.loop(3000, function () {
-                    game.state.start(game.state.getCurrentState().nextLevel());
-                    game.physics.arcade.isPaused = false;
-                }, this);
-                timer.start();
-
-            }
+            score += value;
+            sprint += value;
+            totalScore.text = 'Total: ' + score + ' SP';
+            sprintScore.text = 'Sprint: ' + sprint + ' SP';
         };
 
     };
