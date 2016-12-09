@@ -3,7 +3,9 @@
     };
     MyGame.Howto.prototype = {
         create: function () {
-            this.add.button(0, 0, 'screen-howtoplay', this.startGame, this);
+
+            var howTo =  this.game.add.image(50, 50, 'how-to' );
+            this.game.input.onDown.add(this.startGame, this);
         },
         startGame: function () {
             this.game.state.start('Game');
@@ -11,3 +13,4 @@
     };
 
 })();
+

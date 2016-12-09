@@ -3,9 +3,15 @@
     };
     MyGame.MainMenu.prototype = {
         create: function () {
-            this.startButton = this.add.button(this.game.world.centerX, this.game.world.centerY, 'button-start', this.startGame, this, 2, 0, 1);
-            this.startButton.anchor.set(0.5, 0);
-            this.startButton.input.useHandCursor = true;
+            var title = this.game.add.image(this.game.world.centerX,this.game.world.centerY -100, 'text-title');
+            title.anchor.setTo(0.5, 0.5);
+            title.scale.setTo(0.7, 0.7);
+
+            var start = this.game.add.image(this.game.world.centerX,this.game.world.centerY, 'text-start-game');
+            start.anchor.setTo(0.5, 0.5);
+            start.scale.setTo(0.7, 0.7);
+
+            this.game.input.onDown.add(this.startGame, this);
             //this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
 
         },

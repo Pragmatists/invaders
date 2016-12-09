@@ -28,6 +28,14 @@
             this.load.audio('mediumBoom', 'assets/audio/mediumBoom.wav');
             this.load.audio('collect', 'assets/audio/collect.wav');
             this.load.audio('blip', 'assets/audio/blip1.wav');
+
+            this.load.image('text-title', 'assets/texts/title.png');
+            this.load.image('text-game-over', 'assets/texts/game-over.png');
+            this.load.image('text-start-game', 'assets/texts/start-game.png');
+            this.load.image('text-try-again', 'assets/texts/try-again.png');
+            this.load.image('text-share', 'assets/texts/share.png');
+            this.load.image('how-to', 'assets/texts/how-to.png');
+
         },
         create: function () {
             this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;

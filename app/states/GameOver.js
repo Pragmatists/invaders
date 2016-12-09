@@ -4,27 +4,20 @@
     MyGame.GameOver.prototype = {
         create: function () {
 
-            this.stateText = this.game.add.text(this.game.world.centerX, this.game.world.centerY - 100, ' ', {
-                font: '34px Arial',
-                fill: '#fff'
-            });
-            this.stateText.anchor.setTo(0.5, 0.5);
-            this.stateText.visible = false;
+            var image = this.game.add.image(this.game.world.centerX,this.game.world.centerY -100, 'text-game-over');
+            image.anchor.setTo(0.5, 0.5);
 
-            this.stateText.text = " GAME OVER \n " + "Your score:" + MyGame.score + "\n Click to restart";
-            this.stateText.visible = true;
-
-            this.startButton = this.add.button(this.game.world.centerX, this.game.world.centerY, 'button-start', this.restartGame, this, 2, 0, 1);
+            this.startButton = this.add.button(this.game.world.centerX, this.game.world.centerY, 'text-try-again', this.restartGame, this, 2, 0, 1);
             this.startButton.anchor.set(0.5, 0.5);
+            this.startButton.scale.setTo(0.5, 0.5);
             this.startButton.input.useHandCursor = true;
 
-            this.facebookButton = this.add.button(this.game.world.centerX, this.game.world.centerY + 60, 'button-facebook', this.shareResult, this, 2, 0, 1);
+            this.facebookButton = this.add.button(this.game.world.centerX, this.game.world.centerY + 60, 'text-share', this.shareResult, this, 2, 0, 1);
             this.facebookButton.anchor.set(0.5, 0.5);
             this.facebookButton.input.useHandCursor = true;
 
         },
         restartGame: function () {
-            this.stateText.visible = false;
             MyGame.score = 0;
             this.game.state.start('Game');
         },
