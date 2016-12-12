@@ -23,8 +23,8 @@
 
             if (this.player.alive) {
 
-                this.padControls.update();
-                this.keyboardControls.update();
+                this.padControls.update(this.player);
+                this.keyboardControls.update(this.player);
 
                 this.collisions.update(this.player, this.bonuses, this.extraBonuses, this.aliens)
             }

@@ -12,18 +12,18 @@
         buttonA.scale = 0.4;
         buttonA.alignBottomRight(10);
 
-//TODO this or out of function
-        MyGame.PadControls.prototype.update = function () {
+
+        MyGame.PadControls.prototype.update = function (player) {
             if (stick.isDown) {
                 var velocity = stick.forceX * 200;
-                new MyGame.EventDispatcher().dispatch('controls-move', velocity);
+                player.move(velocity);
             }
             else {
-                new MyGame.EventDispatcher().dispatch('controls-move', 0);
+                player.stop();
             }
 
             if (buttonA.isDown) {
-                new MyGame.EventDispatcher().dispatch('controls-fire');
+                player.fireBullet();
             }
 
         };

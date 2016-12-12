@@ -4,16 +4,18 @@
         var cursors = game.input.keyboard.createCursorKeys();
         var fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-        MyGame.KeyboardControls.prototype.update = function () {
+        MyGame.KeyboardControls.prototype.update = function (player) {
 
             if (fireButton.isDown) {
-                new  MyGame.EventDispatcher().dispatch('controls-fire');
+                player.fireBullet();
             }
             if (cursors.left.isDown) {
-                new  MyGame.EventDispatcher().dispatch('controls-move', -200);
+                player.move(-200);
             }
             else if (cursors.right.isDown) {
-                new  MyGame.EventDispatcher().dispatch('controls-move', 200);
+                player.move(200);
+            }else{
+                player.stop();
             }
 
         };

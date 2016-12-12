@@ -17,14 +17,6 @@
 
         game.add.existing(this);
 
-        new MyGame.EventDispatcher().register('controls-fire', function () {
-            that.fireBullet();
-        });
-
-        new MyGame.EventDispatcher().register('controls-move', function (velocity) {
-            that.move(velocity);
-        });
-
         this.bullets = this.game.add.group();
         //bullets.scale.setTo(scaleRatio, scaleRatio);
         this.bullets.enableBody = true;
@@ -49,6 +41,10 @@
 
     MyGame.Player.prototype.move = function (velocity) {
         this.body.velocity.x = velocity;
+    };
+
+    MyGame.Player.prototype.stop = function () {
+        this.body.velocity.x = 0;
     };
 
     MyGame.Player.prototype.getBullets = function () {
