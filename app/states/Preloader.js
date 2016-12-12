@@ -7,7 +7,7 @@
             this.load.spritesheet('button-start', 'assets/button-start.png', 146, 51);
             this.load.spritesheet('button-facebook', 'assets/button-start.png', 146, 51);
             this.load.image('screen-howtoplay', 'assets/screen-howtoplay.png');
-            this.load.image('space', 'assets/background.png');
+            this.load.image('space', 'assets/space.png');
 //            this.load.image('alien', 'assets/space-baddie.png');
             this.load.image('alien', 'assets/bug.png');
 //            this.load.image('bonus-small', 'assets/carrot.png');

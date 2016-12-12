@@ -20,7 +20,7 @@
         }
 
         MyGame.Alien.prototype.explode = function () {
-            new MyGame.Explosions(this.game).explode(this);
+            new MyGame.Explosions(this.game).smallExplode(this);
             resetElement(this);
             new MyGame.EventDispatcher().dispatch("scored", 1);
         };
