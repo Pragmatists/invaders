@@ -5,8 +5,8 @@
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
 
-        for (var alienNo = 0; alienNo < 10; alienNo++) {
-            var position = game.world.width * (alienNo / 10);
+        for (var alienNo = 0; alienNo < 5; alienNo++) {
+            var position = game.world.width * (alienNo / 5);
             this.add(new MyGame.Alien(game, position));
         }
     };

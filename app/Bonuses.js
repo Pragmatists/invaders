@@ -6,17 +6,17 @@
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
 
-        for (var x = 0; x < 6; x++) {
+        for (var x = 0; x < 4; x++) {
            this.add(new MyGame.Bonus(game,new MyGame.SmallBonus()));
         }
 
-        for (var z = 0; z < 4; z++) {
+        for (var z = 0; z < 2; z++) {
             this.add(new MyGame.Bonus(game,new MyGame.MediumBonus()));
         }
 
-        for (var y = 0; y < 2; y++) {
-            this.add(new MyGame.Bonus(game,new MyGame.LargeBonus()));
-        }
+        //for (var y = 0; y < 2; y++) {
+        //    this.add(new MyGame.Bonus(game,new MyGame.LargeBonus()));
+        //}
 
     };
 
