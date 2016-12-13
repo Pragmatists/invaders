@@ -34,6 +34,7 @@
             this.load.image('text-start-game', 'assets/texts/start-game.png');
             this.load.image('text-try-again', 'assets/texts/try-again.png');
             this.load.image('text-share', 'assets/texts/share.png');
+            this.load.image('text-sprint', 'assets/texts/sprint-completed.png');
             this.load.image('how-to', 'assets/texts/how-to.png');
 
         },
