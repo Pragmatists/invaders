@@ -2,7 +2,6 @@
     MyGame.ExtraBonuses = function (game) {
         Phaser.Group.call(this, game);
 
-        var x = Math.random() * (game.world.width - 50);
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(1, 'star');

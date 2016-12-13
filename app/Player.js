@@ -14,6 +14,7 @@
         this.anchor.setTo(0.5, 0.5);
         game.physics.enable(this, Phaser.Physics.ARCADE);
         this.body.collideWorldBounds = true;
+        this.body.setSize(160, 200, 0, 70);
 
         game.add.existing(this);
 

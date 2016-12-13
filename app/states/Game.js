@@ -31,6 +31,9 @@
         },
         shutdown: function () {
             this.padControls.destroy();
+        },
+        render:function(){
+            //this.game.debug.body(this.player);
         }
 
     };
