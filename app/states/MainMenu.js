@@ -12,6 +12,10 @@
             start.anchor.setTo(0.5, 0.5);
             start.scale.setTo(0.5, 0.5);
 
+            var pragmatists = this.game.add.image(this.game.world.centerX,this.game.world.centerY, 'text-start-game');
+            start.anchor.setTo(0.5, 0.5);
+            start.scale.setTo(0.5, 0.5);
+
             this.game.input.onDown.add(this.startGame, this);
             //this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
 

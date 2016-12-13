@@ -37,6 +37,9 @@
             this.load.image('text-sprint', 'assets/texts/sprint-completed.png');
             this.load.image('how-to', 'assets/texts/how-to.png');
 
+            this.load.image('pragmatists', 'assets/texts/pragma.png');
+            this.load.image('presents', 'assets/texts/presents-2016.png');
+
         },
         create: function () {
             this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -46,7 +49,7 @@
 
             this.game.physics.setBoundsToWorld();
 
-            this.game.state.start('MainMenu');
+            this.game.state.start('Splash');
         }
     };
 

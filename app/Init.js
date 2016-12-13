@@ -4,6 +4,7 @@ var MyGame = (function () {
         var game = new Phaser.Game(320, 480, Phaser.CANVAS, 'game');
 
         game.state.add('Preloader', MyGame.Preloader);
+        game.state.add('Splash', MyGame.Splash);
         game.state.add('MainMenu', MyGame.MainMenu);
         game.state.add('Howto', MyGame.Howto);
         game.state.add('Game', MyGame.Game);
