@@ -20,7 +20,7 @@
             if (bonus) {
                 bonus.body.setSize(40, 40, 0, 0);
                 bonus.reset(game.world.randomX + 20, 0);
-                bonus.body.velocity.y = 25 + Math.random() * 200;
+                bonus.body.velocity.y = 100 + Math.random() * 100;
             }
         }
     };
