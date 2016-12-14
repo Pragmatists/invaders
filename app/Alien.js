@@ -14,8 +14,16 @@
             return 25 + Math.random() * 100;
         }
 
+        function getRandom(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function newPosition(element) {
+            return element.position.x + getRandom(-15,15);
+        }
+
         function resetElement(element) {
-            element.reset(element.position.x, 0);
+            element.reset(newPosition(element), 0);
             element.body.velocity.y = velocity();
         }
 
