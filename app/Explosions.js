@@ -30,7 +30,9 @@
 
     function playExplosion(element) {
         var explosion = this.getFirstExists(false);
-        explosion.reset(element.body.x, element.body.y);
+        var x = Math.floor(element.body.x + element.width / 2);
+        var y = Math.floor(element.body.y + element.height / 2);
+        explosion.reset(x,y);
         explosion.play('kaboom', 30, false, true);
         return explosion;
     }
