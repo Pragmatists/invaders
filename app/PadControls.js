@@ -5,12 +5,12 @@
 
         var stick = pad.addStick(0, 0, 200, 'generic');
         stick.scale = 0.4;
-        stick.alignBottomLeft(10);
+        stick.alignBottomLeft(0);
         stick.motionLock = Phaser.VirtualJoystick.HORIZONTAL;
 
         var buttonA = pad.addButton(500, 520, 'generic', 'button1-up', 'button1-down');
-        buttonA.scale = 0.4;
-        buttonA.alignBottomRight(10);
+        buttonA.scale = 0.6;
+        buttonA.alignBottomRight(15);
 
 
         MyGame.PadControls.prototype.update = function (player) {

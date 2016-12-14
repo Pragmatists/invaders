@@ -14,8 +14,6 @@
             }
             else if (cursors.right.isDown) {
                 player.move(200);
-            }else{
-                player.stop();
             }
 
         };
