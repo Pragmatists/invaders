@@ -10,8 +10,12 @@
         this.scale.setTo(0.3, 0.3);
         this.angle += 5;
 
+        function getRandom(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
         function position() {
-            return Math.random() * (game.world.width - 50);
+            return getRandom(50, game.world.width - 50);
         }
 
         function resetElement(element) {
@@ -56,7 +60,7 @@
             return 25 + Math.random() * 150;
         };
 
-        this.sprite = function() {
+        this.sprite = function () {
             return "bonus-medium";
         };
 
@@ -71,7 +75,7 @@
             return 25 + Math.random() * 180;
         };
 
-        this.sprite = function() {
+        this.sprite = function () {
             return "bonus-large";
         };
 
