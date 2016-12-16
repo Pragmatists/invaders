@@ -8,9 +8,13 @@
             title.scale.setTo(0.1, 0.1);
             this.game.add.tween(title.scale).to( { x: 0.7, y: 0.7 }, 2000, Phaser.Easing.Linear.None, true);
 
-            var start = this.game.add.image(this.game.world.centerX,this.game.world.centerY, 'text-start-game');
-            start.anchor.setTo(0.5, 0.5);
-            start.scale.setTo(0.5, 0.5);
+            var timer = this.game.time.create(false);
+            timer.loop(2500, function () {
+                var start = this.game.add.image(this.game.world.centerX,this.game.world.centerY +100, 'text-start-game');
+                start.anchor.setTo(0.5, 0.5);
+                start.scale.setTo(0.5, 0.5);
+            }, this);
+            timer.start();
 
             this.game.input.onDown.add(this.startGame, this);
             //this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
