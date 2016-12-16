@@ -14,8 +14,13 @@
             }
             else if (cursors.right.isDown) {
                 player.move(200);
+            } else {
+                player.stop();
             }
 
+        };
+
+        MyGame.PadControls.prototype.destroy = function () {
         };
 
 

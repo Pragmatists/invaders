@@ -5,8 +5,7 @@
 
             new MyGame.EventDispatcher().reset();
             
-            this.padControls = new MyGame.PadControls(this.game);
-            this.keyboardControls = new MyGame.KeyboardControls(this.game);
+
             this.starfield = new MyGame.Starfield(this.game);
             this.score = new MyGame.ScoreBoard(this.game);
             this.levels = new MyGame.Levels(this.game);
@@ -16,21 +15,25 @@
             this.extraBonuses = new MyGame.ExtraBonuses(this.game);
             this.collisions = new MyGame.Collisions(this.game, this.aliens);
 
+            if (this.game.device.desktop){
+                this.controlls = new MyGame.KeyboardControls(this.game);
+            }else{
+                this.controlls = new MyGame.PadControls(this.game);
+            }
+
         },
         update: function () {
             
             this.starfield.scroll();
 
             if (this.player.alive) {
-
-                this.padControls.update(this.player);
-                this.keyboardControls.update(this.player);
+                this.controlls.update(this.player);
 
                 this.collisions.update(this.player, this.bonuses, this.extraBonuses, this.aliens)
             }
         },
         shutdown: function () {
-            this.padControls.destroy();
+            this.controlls.destroy();
         },
         render:function(){
             //this.game.debug.body(this.player);

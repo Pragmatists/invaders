@@ -21,7 +21,6 @@
             else {
                 player.stop();
             }
-
             if (buttonA.isDown) {
                 player.fireBullet();
             }
