@@ -42,8 +42,14 @@
 
         },
         create: function () {
-            this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-            this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+            if (this.game.device.desktop) {
+                this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+                this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+            } else {
+                this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+                this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+            }
+
             this.game.scale.pageAlignHorizontally = true;
             this.game.scale.pageAlignVertically = true;
 
