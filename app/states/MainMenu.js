@@ -17,7 +17,7 @@
             timer.start();
 
             this.game.input.onDown.add(this.startGame, this);
-            //this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+
 
         },
         startGame: function () {
