@@ -8,7 +8,7 @@
         this.events.onOutOfBounds.add(resetElement, this);
         this.body.velocity.y = velocity();
 
-        this.scale.setTo(0.3, 0.3);
+        //this.scale.setTo(0.3, 0.3);
         
         function velocity() {
             return 25 + Math.random() * 100;
