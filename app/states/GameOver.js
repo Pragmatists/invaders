@@ -19,6 +19,7 @@
         },
         restartGame: function () {
             MyGame.score = 0;
+            MyGame.speed = 0;
             this.game.state.start('Game');
         },
         shareResult: function () {

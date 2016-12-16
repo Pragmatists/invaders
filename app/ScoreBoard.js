@@ -27,6 +27,7 @@
             sprint += value;
             totalScore.text = 'Total: ' + score + ' SP';
             sprintScore.text = 'Sprint: ' + sprint + ' SP';
+            MyGame.score = score;
         };
 
     };

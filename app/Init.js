@@ -18,6 +18,7 @@ var MyGame = (function () {
         _HEIGHT: 480 * window.devicePixelRatio,
         scaleRatio: window.devicePixelRatio / 3,
         score: 0,
+        speed: 0,
         initGame: initGame
     }
 

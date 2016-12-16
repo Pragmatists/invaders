@@ -24,7 +24,7 @@
 
         function resetElement(element) {
             element.reset(newPosition(element), 0);
-            element.body.velocity.y = velocity();
+            element.body.velocity.y = velocity()+ MyGame.speed;
         }
 
         MyGame.Alien.prototype.explode = function () {
