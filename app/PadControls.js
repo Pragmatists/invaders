@@ -15,7 +15,7 @@
 
         MyGame.PadControls.prototype.update = function (player) {
             if (stick.isDown) {
-                var velocity = stick.forceX * 200;
+                var velocity = (stick.forceX/stick.forceX) * 200;
                 player.move(velocity);
             }
             else {

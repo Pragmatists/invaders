@@ -20,7 +20,7 @@
 
         };
 
-        MyGame.PadControls.prototype.destroy = function () {
+        MyGame.KeyboardControls.prototype.destroy = function () {
         };
 
 

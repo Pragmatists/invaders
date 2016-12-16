@@ -7,7 +7,6 @@
         this.checkWorldBounds = true;
         this.events.onOutOfBounds.add(resetElement, this);
         this.body.velocity.y = type.velocity();
-        //this.scale.setTo(0.3, 0.3);
         this.angle += 5;
 
         function getRandom(min, max) {
