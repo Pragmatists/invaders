@@ -7,10 +7,13 @@
         this.game = game;
         var that = this;
         blip1 = this.game.add.audio('blip');
-        Phaser.Sprite.call(this, game, game.world.centerX, game.world.height - 100, 'ship');
+        var shipPosition = game.world.height;
+        if (!this.game.device.desktop) {
+            shipPosition-=100;
+        }
+        Phaser.Sprite.call(this, game, game.world.centerX, shipPosition, 'ship');
 
         this.scale.setTo(0.3, 0.3);
-        //player.scale.setTo(scaleRatio, scaleRatio); //http://www.joshmorony.com/how-to-scale-a-game-for-all-device-sizes-in-phaser/
         this.anchor.setTo(0.5, 0.5);
         game.physics.enable(this, Phaser.Physics.ARCADE);
         this.body.collideWorldBounds = true;
@@ -19,7 +22,6 @@
         game.add.existing(this);
 
         this.bullets = this.game.add.group();
-        //bullets.scale.setTo(scaleRatio, scaleRatio);
         this.bullets.enableBody = true;
         this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
         this.bullets.createMultiple(30, 'bullet');
