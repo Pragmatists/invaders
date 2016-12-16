@@ -42,8 +42,8 @@
 
         },
         create: function () {
-            this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
-            this.game.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
+            this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+            this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
             this.game.scale.pageAlignHorizontally = true;
             this.game.scale.pageAlignVertically = true;
 
