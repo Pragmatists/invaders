@@ -4,12 +4,12 @@
         var pad = game.plugins.add(Phaser.VirtualJoystick);
 
         var stick = pad.addStick(0, 0, 200, 'generic');
-        stick.scale = 0.4;
+        stick.scale = 0.5;
         stick.alignBottomLeft(0);
         stick.motionLock = Phaser.VirtualJoystick.HORIZONTAL;
 
         var buttonA = pad.addButton(500, 520, 'generic', 'button1-up', 'button1-down');
-        buttonA.scale = 0.6;
+        buttonA.scale = 0.7;
         buttonA.alignBottomRight(15);
 
 

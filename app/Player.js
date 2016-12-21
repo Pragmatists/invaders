@@ -9,7 +9,7 @@
         blip1 = this.game.add.audio('blip');
         var shipPosition = game.world.height;
         if (!this.game.device.desktop) {
-            shipPosition-=100;
+            shipPosition-=130;
         }
         Phaser.Sprite.call(this, game, game.world.centerX, shipPosition, 'ship');
 
