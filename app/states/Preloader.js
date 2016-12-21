@@ -20,6 +20,9 @@
             this.load.audio('collect', 'assets/audio/collect.wav');
             this.load.audio('blip', 'assets/audio/blip1.wav');
 
+            this.load.audio('music', ['assets/audio/theme-song.mp3','assets/audio/theme-song.ogg']);
+
+
             this.load.image('text-title', 'assets/texts/title.png');
             this.load.image('text-game-over', 'assets/texts/game-over.png');
             this.load.image('text-start-game', 'assets/texts/start-game.png');
@@ -54,6 +57,9 @@
             this.game.scale.pageAlignVertically = true;
 
             this.game.physics.setBoundsToWorld();
+
+            var music = this.game.add.audio('music');
+            music.play();
 
             this.game.state.start('Splash');
         }
