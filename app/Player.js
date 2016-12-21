@@ -24,7 +24,7 @@
         this.bullets = this.game.add.group();
         this.bullets.enableBody = true;
         this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
-        this.bullets.createMultiple(30, 'bullet');
+        this.bullets.createMultiple(6, 'bullet');
         this.bullets.setAll('anchor.x', 0.5);
         this.bullets.setAll('anchor.y', 0.8);
         this.bullets.setAll('outOfBoundsKill', true);
