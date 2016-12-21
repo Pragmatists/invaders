@@ -4,7 +4,7 @@
     MyGame.Preloader.prototype = {
         preload: function () {
 
-            this.load.image('space', 'assets/space.png');
+            this.load.image('space', 'assets/seamles_space.png');
             this.load.image('alien', 'assets/Bug50proc.png');
             this.load.image('bonus-small', 'assets/Story50proc.png');
             this.load.image('star', 'assets/shield-small.png');
@@ -43,8 +43,8 @@
         },
         create: function () {
             if (this.game.device.desktop) {
-                this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
-                this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+                this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+                this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
             } else {
                 this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
                 this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
