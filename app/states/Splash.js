@@ -6,12 +6,12 @@
 
             var tween;
 
-            var pragmatists = this.game.add.image(this.game.world.centerX, this.game.world.centerY - 100, 'pragmatists');
+            var pragmatists = this.game.add.image(this.game.world.centerX, this.game.world.centerY - 100, 'logo-pragmatists');
             pragmatists.anchor.setTo(0.5, 0.5);
-            pragmatists.scale.setTo(0.1, 0.1);
+            pragmatists.scale.setTo(0.5, 0.5);
             pragmatists.alpha = 0;
 
-            var title = this.game.add.image(this.game.world.centerX, this.game.world.centerY - 100, 'text-title');
+            var title = this.game.add.image(this.game.world.centerX, this.game.world.centerY - 100, 'text-game-title');
             title.anchor.setTo(0.5, 0.5);
             title.scale.setTo(0.1, 0.1);
             title.alpha = 0;

@@ -11,8 +11,8 @@
             this.load.image('bonus-medium', 'assets/Epic50proc.png');
             this.load.image('bonus-large', 'assets/epic.png');
             this.load.image('ship', 'assets/ship.png');
-            this.load.spritesheet('kaboom', 'assets/explode.png', 128, 128);
             this.load.image('bullet', 'assets/bullet.png');
+            this.load.spritesheet('kaboom', 'assets/explode.png', 128, 128);
             this.load.atlas('generic', 'assets/joystick/skins/generic-joystick.png', 'assets/joystick/skins/generic-joystick.json');
 
             this.load.audio('smallBoom', 'assets/audio/smallBoom.wav');
@@ -25,8 +25,7 @@
 
             this.load.audio('music', ['assets/audio/theme-song.mp3','assets/audio/theme-song.ogg']);
 
-
-            this.load.image('text-title', 'assets/texts/title.png');
+            this.load.image('text-game-title', 'assets/texts/title-logo.png');
             this.load.image('text-tap-to-start', 'assets/texts/tap-to-start.png');
             this.load.image('text-click-to-start', 'assets/texts/click-to-start.png');
             this.load.image('text-game-over', 'assets/texts/game-over.png');
@@ -35,6 +34,7 @@
             this.load.image('text-share', 'assets/texts/share.png');
             this.load.image('text-sprint', 'assets/texts/sprint-completed.png');
             this.load.image('text-credits', 'assets/texts/credits.png');
+            this.load.image('credits-page', 'assets/texts/credits-page.png');
             this.load.image('how-to', 'assets/texts/how-to.png');
 
             this.load.image('howto1', 'assets/texts/howto/howto1.png');
@@ -46,8 +46,7 @@
             this.load.image('howto9', 'assets/texts/howto/howto9.png');
             this.load.image('howto10', 'assets/texts/howto/howto11.png');
 
-            this.load.image('pragmatists', 'assets/texts/pragma.png');
-            this.load.image('presents', 'assets/texts/presents-2016.png');
+            this.load.image('logo-pragmatists', 'assets/texts/logo-pixel.png');
 
         },
         create: function () {
