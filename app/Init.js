@@ -5,10 +5,10 @@ var MyGame = (function () {
 
         game.state.add('Preloader', MyGame.Preloader);
         game.state.add('Splash', MyGame.Splash);
-        game.state.add('MainMenu', MyGame.MainMenu);
         game.state.add('Howto', MyGame.Howto);
         game.state.add('Game', MyGame.Game);
         game.state.add('GameOver', MyGame.GameOver);
+        game.state.add('Credits', MyGame.Credits);
 
         game.state.start('Preloader');
     };

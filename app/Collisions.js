@@ -26,7 +26,7 @@
         }
 
         function extraBonusPlayerCollision(player, bonus) {
-            bonus.kill();
+            bonus.collect();
             aliens.explode();
         }
 

@@ -27,6 +27,8 @@
             this.game.input.onDown.add(this.startGame, this);
         },
         startGame: function () {
+            var click = this.game.add.audio('click');
+            click.play("",0,0.5);
             this.game.state.start('Game');
         }
     };

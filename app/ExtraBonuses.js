@@ -14,12 +14,26 @@
 
         function releaseBonus() {
             var bonus = this.getFirstExists(false);
-            //TODO play music when releasing bonus
             if (bonus) {
                 bonus.body.setSize(40, 40, 0, 0);
                 bonus.reset(game.world.randomX + 20, 0);
                 bonus.body.velocity.y = 100 + Math.random() * 100;
             }
+            bonus.collect= function(){
+                var collect = game.add.audio('pickup');
+                collect.play("",0,0.5);
+                pause(game);
+                this.kill();
+            }
+        }
+
+        function pause(game) {
+            game.physics.arcade.isPaused = true;
+            var timer = game.time.create(false);
+            timer.loop(1000, function () {
+                game.physics.arcade.isPaused = false;
+            }, this);
+            timer.start();
         }
     };
 

@@ -23,7 +23,7 @@
         }
 
         MyGame.Bonus.prototype.explode = function () {
-            new MyGame.Explosions(this.game).smallExplode(this);
+            new MyGame.Explosions(this.game).bonusExplode(this);
             resetElement(this);
         };
 

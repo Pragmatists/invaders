@@ -38,7 +38,7 @@
     MyGame.Player.prototype.dead = function () {
         new MyGame.Explosions(this.game).explode(this);
         var mediumBoomSound = this.game.add.audio('mediumBoom');
-        mediumBoomSound.play();
+        mediumBoomSound.play("",0,0.5);
         this.kill();
     };
 
@@ -61,7 +61,7 @@
             if (bullet) {
                 bullet.reset(this.x, this.y + 8);
                 bullet.body.velocity.y = -400;
-                blip1.play();
+                blip1.play("",0,0.5);
                 this.bulletTime = this.game.time.now + 200;
             }
         }

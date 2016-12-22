@@ -3,6 +3,7 @@
         Phaser.Group.call(this, game);
 
         this.smallBoomSound = game.add.audio('smallBoom');
+        this.bonusBoom = game.add.audio('bonusBoom');
         this.createMultiple(30, 'kaboom');
         this.forEach(setupExploder, game);
 
@@ -19,13 +20,19 @@
 
     MyGame.Explosions.prototype.explode = function (element) {
         playExplosion.call(this, element);
-        this.smallBoomSound.play();
+        this.smallBoomSound.play("",0,0.5);
     };
 
     MyGame.Explosions.prototype.smallExplode = function (element) {
         var explosion = playExplosion.call(this, element);
         explosion.scale.setTo(0.5, 0.5);
-        this.smallBoomSound.play();
+        this.smallBoomSound.play("",0,0.5);
+    };
+
+    MyGame.Explosions.prototype.bonusExplode = function (element) {
+        var explosion = playExplosion.call(this, element);
+        explosion.scale.setTo(0.5, 0.5);
+        this.bonusBoom.play("",0,0.5);
     };
 
     function playExplosion(element) {

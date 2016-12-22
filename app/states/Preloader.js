@@ -17,18 +17,24 @@
 
             this.load.audio('smallBoom', 'assets/audio/smallBoom.wav');
             this.load.audio('mediumBoom', 'assets/audio/mediumBoom.wav');
+            this.load.audio('bonusBoom', 'assets/audio/bonus_death.wav');
             this.load.audio('collect', 'assets/audio/collect.wav');
-            this.load.audio('blip', 'assets/audio/blip1.wav');
+            this.load.audio('pickup', 'assets/audio/pickup.wav');
+            this.load.audio('blip', 'assets/audio/blaster.mp3');
+            this.load.audio('click', 'assets/audio/battery.wav');
 
             this.load.audio('music', ['assets/audio/theme-song.mp3','assets/audio/theme-song.ogg']);
 
 
             this.load.image('text-title', 'assets/texts/title.png');
+            this.load.image('text-tap-to-start', 'assets/texts/tap-to-start.png');
+            this.load.image('text-click-to-start', 'assets/texts/click-to-start.png');
             this.load.image('text-game-over', 'assets/texts/game-over.png');
             this.load.image('text-start-game', 'assets/texts/start-game.png');
             this.load.image('text-try-again', 'assets/texts/try-again.png');
             this.load.image('text-share', 'assets/texts/share.png');
             this.load.image('text-sprint', 'assets/texts/sprint-completed.png');
+            this.load.image('text-credits', 'assets/texts/credits.png');
             this.load.image('how-to', 'assets/texts/how-to.png');
 
             this.load.image('howto1', 'assets/texts/howto/howto1.png');
@@ -45,6 +51,7 @@
 
         },
         create: function () {
+
             if (this.game.device.desktop) {
                 this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
                 this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -60,6 +67,7 @@
 
             var music = this.game.add.audio('music');
             music.play();
+            music.loopFull();
 
             this.game.state.start('Splash');
         }

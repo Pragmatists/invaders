@@ -18,10 +18,7 @@
 
             if (points >= threshold) {
 
-                sprintCompleted = game.add.image(game.world.centerX, game.world.centerY, 'text-sprint');
-                sprintCompleted.anchor.setTo(0.5, 0.5);
-                sprintCompleted.scale.setTo(0.5, 0.5);
-                game.time.events.add(Phaser.Timer.SECOND * 2, hideSprintCompleted, this);
+                showSprintCompleted(game);
 
                 points = 0;
                 level += 1;
@@ -31,8 +28,17 @@
 
         };
 
-        function hideSprintCompleted() {
-            sprintCompleted.destroy();
+
+
+        function showSprintCompleted(game) {
+            sprintCompleted = game.add.image(game.world.centerX, game.world.centerY, 'text-sprint');
+            sprintCompleted.anchor.setTo(0.5, 0.5);
+            sprintCompleted.scale.setTo(0.5, 0.5);
+            var timer = game.time.create(false);
+            timer.loop(1000, function () {
+                sprintCompleted.destroy();
+            }, this);
+            timer.start();
         }
 
     };
