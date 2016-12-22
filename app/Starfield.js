@@ -11,7 +11,6 @@
             spaceBackground.tilePosition.y += 2
         }
 
-
     };
 
 })();

@@ -28,8 +28,6 @@
 
         };
 
-
-
         function showSprintCompleted(game) {
             sprintCompleted = game.add.image(game.world.centerX, game.world.centerY, 'text-sprint');
             sprintCompleted.anchor.setTo(0.5, 0.5);

@@ -1,7 +1,7 @@
 (function () {
     MyGame.ExtraBonuses = function (game) {
         Phaser.Group.call(this, game);
-
+        var collect = game.add.audio('pickup');
         this.enableBody = true;
         this.physicsBodyType = Phaser.Physics.ARCADE;
         this.createMultiple(1, 'star');
@@ -20,7 +20,6 @@
                 bonus.body.velocity.y = 100 + Math.random() * 100;
             }
             bonus.collect= function(){
-                var collect = game.add.audio('pickup');
                 collect.play("",0,0.5);
                 pause(game);
                 this.kill();

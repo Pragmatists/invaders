@@ -14,10 +14,6 @@
             this.add(new MyGame.Bonus(game,new MyGame.MediumBonus()));
         }
 
-        //for (var y = 0; y < 2; y++) {
-        //    this.add(new MyGame.Bonus(game,new MyGame.LargeBonus()));
-        //}
-
     };
 
     MyGame.Bonuses.prototype = Object.create(Phaser.Group.prototype);

@@ -1,5 +1,8 @@
 (function () {
     MyGame.Bonus = function (game, type) {
+
+        var collect = game.add.audio('collect');
+
         var x = position();
         Phaser.Sprite.call(this, game, x, 0, type.sprite());
         game.physics.enable(this, Phaser.Physics.ARCADE);
@@ -28,7 +31,6 @@
         };
 
         MyGame.Bonus.prototype.collect = function () {
-            var collect = game.add.audio('collect');
             collect.play();
             resetElement(this);
             new MyGame.EventDispatcher().dispatch("scored", type.points());

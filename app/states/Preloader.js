@@ -64,6 +64,7 @@
             this.game.scale.pageAlignVertically = true;
 
             this.game.physics.setBoundsToWorld();
+            this.game.renderer.renderSession.roundPixels = true;
 
             var music = this.game.add.audio('music');
             music.play();

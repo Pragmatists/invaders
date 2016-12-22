@@ -1,5 +1,5 @@
 (function () {
-    var blip1;
+    var blip1,mediumBoomSound;
 
     MyGame.Player = function (game) {
 
@@ -7,6 +7,8 @@
         this.game = game;
         var that = this;
         blip1 = this.game.add.audio('blip');
+        mediumBoomSound = this.game.add.audio('mediumBoom');
+
         var shipPosition = game.world.height;
         if (!this.game.device.desktop) {
             shipPosition-=130;
@@ -37,7 +39,6 @@
 
     MyGame.Player.prototype.dead = function () {
         new MyGame.Explosions(this.game).explode(this);
-        var mediumBoomSound = this.game.add.audio('mediumBoom');
         mediumBoomSound.play("",0,0.5);
         this.kill();
     };

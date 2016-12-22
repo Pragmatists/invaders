@@ -4,7 +4,7 @@
 
         this.smallBoomSound = game.add.audio('smallBoom');
         this.bonusBoom = game.add.audio('bonusBoom');
-        this.createMultiple(30, 'kaboom');
+        this.createMultiple(10, 'kaboom');
         this.forEach(setupExploder, game);
 
         function setupExploder(game) {
