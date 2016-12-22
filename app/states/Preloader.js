@@ -38,7 +38,7 @@
             this.load.image('how-to', 'assets/texts/how-to.png');
 
             this.load.image('howto1', 'assets/texts/howto/howto1.png');
-            this.load.image('howto2', 'assets/texts/howto/howto2.png');
+            this.load.image('howto2', 'assets/texts/howto/howto2b.png');
             this.load.image('howto3', 'assets/texts/howto/howto3.png');
             this.load.image('howto4', 'assets/texts/howto/howto4.png');
             this.load.image('howto5', 'assets/texts/howto/howto5.png');
