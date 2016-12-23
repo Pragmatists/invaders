@@ -22,7 +22,10 @@
             var shield = this.game.add.image(210, 225, 'star' );
             shield.scale.setTo(0.7, 0.7);
             this.game.add.image(50, 260, 'howto10' );
-
+            this.game.add.image(100, 400, 'howto12');
+            
+            this.game.add.image(50, 300, 'control1');
+            
 
             this.game.input.onDown.add(this.startGame, this);
         },

@@ -45,7 +45,10 @@
             this.load.image('howto6', 'assets/texts/howto/howto6a.png');
             this.load.image('howto9', 'assets/texts/howto/howto9.png');
             this.load.image('howto10', 'assets/texts/howto/howto11.png');
+            this.load.image('howto12', 'assets/texts/howto/howto12.png');
 
+            this.load.image('control1', 'assets/texts/control-keys.png');
+            
             this.load.image('logo-pragmatists', 'assets/texts/logo-pixel.png');
 
         },
